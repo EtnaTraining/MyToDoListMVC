@@ -1,0 +1,10 @@
+".container": {
+	backgroundColor: "white"
+},
+"TableViewRow[platform=android]": {
+	font: {
+		fontSize: "14dp"
+	},
+	color: "black",
+	height: "40dp"
+}

@@ -1,0 +1,8 @@
+<Alloy>
+        
+        <Window class="container" title="List of ToDos">
+                <TableView id="todoListTV"  editable="true" >
+                         <TableViewRow leftImage="/appicon.png" title="Titolo" hasChild="true" />
+                </TableView>
+        </Window>
+</Alloy>

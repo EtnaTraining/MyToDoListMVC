@@ -1,0 +1,25 @@
+<Alloy>
+        <Window title="New ToDo Window" layout="vertical">
+                <View>
+                        <Label>Titolo</Label>
+                        <TextField id="titoloTxt"  returnKeyType="Ti.UI.RETURNKEY_NEXT" onReturn="focusLocation"/>
+                </View>
+                <View onClick="blurKeyboard">
+                        <Label>Location</Label>
+                        <TextField id="locationTxt"  onReturn="blurKeyboard" />
+                </View>
+                <View onClick="blurKeyboard">
+                        <Label>Allarme</Label>
+                        <Switch id="alarmSw" value="false" onChange="blurKeyboard" />
+                </View>
+                <View>
+                        <Label>Scadenza</Label>
+                        <Button id="dateBtn" title="oggi" onClick="openDueDateWindow"/>
+                </View>
+                <View height="Ti.UI.FILL">
+                        <ImageView id="iv" image="/appicon.png" />
+                        <Button id="saveToDo" >Salva ToDo</Button>
+                </View>
+
+        </Window>
+</Alloy>

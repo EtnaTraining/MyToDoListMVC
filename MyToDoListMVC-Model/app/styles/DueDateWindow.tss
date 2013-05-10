@@ -1,0 +1,6 @@
+".container": {
+	backgroundColor: "white"
+},
+"#closeWindow": {
+	bottom: "40dp"
+}
