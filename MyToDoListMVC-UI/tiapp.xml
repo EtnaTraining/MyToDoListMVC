@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <id>it.etnatraining.mytodolistMVC</id>
+    <id>it.etnatraining.mytodolistMVCUI</id>
     <name>MyToDoListMVC-UI</name>
     <version>1.0</version>
     <publisher>etna</publisher>
