@@ -1,0 +1,11 @@
+<Alloy>
+        <Collection src="ToDo">
+        <Window class="container" title="List of ToDo">
+        	<RightNavButton>
+        		<Button id="reload" onClick="reload"/>
+        	</RightNavButton>
+                <TableView id="todoListTV" dataCollection="ToDo" dataTransform="defaultThumb" editable="true" onClick="editToDo">
+                         <TableViewRow leftImage="{path}" title="{title}" hasChild="true" />
+                </TableView>
+        </Window>
+</Alloy>

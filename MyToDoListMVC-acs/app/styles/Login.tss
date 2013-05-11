@@ -1,0 +1,49 @@
+".logincontainer": {
+        backgroundColor: 'rgba(0,0,0,0.7)'
+       
+},
+"#wrapper": {
+        backgroundColor: "#fff",
+        borderRadius: 8,
+        borderColor: '#000',
+        borderWidth: 2,
+        width: 300,
+        height: 350,
+        top: 20,
+        layout: 'vertical'
+},
+"#img": {
+        top: 10,
+        width:100
+},
+"TextField": {
+        backgroundColor: "#fff",
+        left: 10, right: 10,
+        height: '40dp',
+        //borderColor: '#888',
+        top: 10,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+},
+"#username": {
+        top: 10,
+        autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE
+},
+"#password": {
+        passwordMask: true,
+        autocorrection: false,
+        autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE
+}
+"#usercreate": {
+        title: 'Create Account',
+        backgroundColor: '#fff',
+        left: 10, right: 10,
+        height: '40dp',
+        top: 30
+},
+"#login": {
+        title: 'Login',
+        backgroundColor: '#fff',
+        left: 10, right: 10,
+        height: '40dp',
+        top: 10
+}

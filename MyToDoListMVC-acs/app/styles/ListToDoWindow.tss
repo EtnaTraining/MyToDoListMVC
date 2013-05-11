@@ -1,0 +1,13 @@
+".container": {
+	backgroundColor: "white"
+},
+"TableViewRow[platform=android]": {
+	font: {
+		fontSize: "14dp"
+	},
+	color: "black",
+	height: "40dp"
+},
+"#reload": {
+	systemButton: Ti.UI.iPhone.SystemButton.REFRESH
+}
