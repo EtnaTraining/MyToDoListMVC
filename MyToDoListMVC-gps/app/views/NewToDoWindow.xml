@@ -1,0 +1,27 @@
+<Alloy>
+        <Model src="ToDo">
+        <Window title="New ToDo Window" layout="vertical">
+                <View>
+                        <Label>Titolo</Label>
+                        <TextField id="titoloTxt" value="{ToDo.title}" returnKeyType="Ti.UI.RETURNKEY_NEXT" onReturn="focusLocation"/>
+                </View>
+                <View onClick="blurKeyboard">
+                        <Label>Location</Label>
+                        <TextField id="locationTxt" value="{ToDo.location}" onReturn="blurKeyboard" />
+                        <Button id="mapButton" onClick="geolocateToDo"/>
+                </View>
+                <View onClick="blurKeyboard">
+                        <Label>Allarme</Label>
+                        <Switch id="alarmSw" value="false"  value="{ToDo.alarm}" onChange="blurKeyboard" />
+                </View>
+                <View>
+                        <Label>Scadenza</Label>
+                        <Button id="dateBtn" title="{ToDo.duedate}" onClick="openDueDateWindow"/>
+                </View>
+                <View height="Ti.UI.FILL">
+                        <ImageView id="iv" image="{ToDo.path}" onClick="chooseImg"/>
+                        <Button id="saveToDo" onClick="saveToDo">Salva ToDo</Button>
+                </View>
+
+        </Window>
+</Alloy>
