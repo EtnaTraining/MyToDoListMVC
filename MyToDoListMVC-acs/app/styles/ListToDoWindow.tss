@@ -3,11 +3,11 @@
 },
 "TableViewRow[platform=android]": {
 	font: {
-		fontSize: "14dp"
+		fontSize: "16dp"
 	},
 	color: "black",
-	height: "40dp"
+	height: "60dp"
 },
-"#reload": {
+"#reload[platform=ios]": {
 	systemButton: Ti.UI.iPhone.SystemButton.REFRESH
 }

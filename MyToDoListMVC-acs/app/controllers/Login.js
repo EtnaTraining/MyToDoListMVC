@@ -26,3 +26,8 @@ function login() {
 		}
 	});
 }
+
+function cancelLogin() {
+	Alloy.Collections.ToDo.fetch();
+	$.logincontainer.close();
+}

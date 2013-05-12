@@ -4,6 +4,9 @@
         	<RightNavButton>
         		<Button id="reload" onClick="reload"/>
         	</RightNavButton>
+        	<Menu id="menu2" platform="android">
+				<MenuItem id="reload" title="Reload" onClick="reload" />
+			</Menu>
                 <TableView id="todoListTV" dataCollection="ToDo" dataTransform="defaultThumb" editable="true" onClick="editToDo">
                          <TableViewRow leftImage="{path}" title="{title}" hasChild="true" />
                 </TableView>

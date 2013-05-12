@@ -18,7 +18,7 @@ function saveToDo() {
 		location : $.locationTxt.value,
 		alarm : $.alarmSw.value,
 		duedate : $.dateBtn.title,
-		path: filename
+		path : filename
 	});
 	//Ti.API.info(newToDo.toJSON());
 	if (newToDo.isValid()) {
@@ -61,13 +61,23 @@ function openDueDateWindow() {
 }
 
 function geolocateToDo() {
-	var mapWin = Alloy.createController("MapWindow", {location: $.locationTxt.value, parent: $});
-	mapWin.getView().open({modal:true});
+	var mapWin = Alloy.createController("MapWindow", {
+		location : $.locationTxt.value,
+		parent : $
+	});
+	mapWin.getView().open({
+		modal : true
+	});
 }
 
 function logout() {
-	acs.logout();
-	var loginWin = Alloy.createController("Login").getView();
-	loginWin.open({modal:true});
+	if (Ti.Network.online) {
+		acs.logout();
+		var loginWin = Alloy.createController("Login").getView();
+		loginWin.open({
+			modal : true
+		});
+	}
+
 }
 

@@ -1,9 +1,12 @@
 <Alloy>
         <Model src="ToDo">
         <Window title="New ToDo Window" layout="vertical">
-        	<LeftNavButton>
-        		<Button id="logout" title="Logout" onClick="logout" />
+        	<LeftNavButton platform="ios">
+        		<Button id="logout" title="Cloud" onClick="logout" />
         	</LeftNavButton>
+        	<Menu id="menu" platform="android">
+				<MenuItem id="logout" title="Cloud" onClick="logout" />
+			</Menu>
                 <View>
                         <Label>Titolo</Label>
                         <TextField id="titoloTxt" value="{ToDo.title}" returnKeyType="Ti.UI.RETURNKEY_NEXT" onReturn="focusLocation"/>

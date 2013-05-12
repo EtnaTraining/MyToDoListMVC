@@ -1,5 +1,11 @@
 <Alloy>
 	<Window id="logincontainer" title="Cloud Login" class="logincontainer">
+		<LeftNavButton platform="ios">
+			<Button id="cancel" title="Offline" onClick="cancelLogin"/>
+		</LeftNavButton>
+		<Menu id="menu" platform="android">
+				<MenuItem id="cancel" title="Offline" onClick="cancelLogin" />
+		</Menu>
                 <View id='wrapper'>
                         <ImageView image="/images/login.png" id='img'/>
                         <TextField id='username' hintText='username'/>

@@ -26,8 +26,11 @@ function defaultThumb(model) {
 }
 
 function reload() {
-	acs.getToDos(function(todolist) {
-		//Ti.API.info(todolist);
-		Alloy.Collections.ToDo.reset(todolist);
-	});
+	if (Ti.Network.online) {
+		acs.getToDos(function(todolist) {
+			//Ti.API.info(todolist);
+			Alloy.Collections.ToDo.reset(todolist);
+		});
+	}
+
 }
