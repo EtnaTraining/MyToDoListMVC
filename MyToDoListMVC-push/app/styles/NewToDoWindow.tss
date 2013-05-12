@@ -1,0 +1,60 @@
+"Window": {
+	backgroundColor: "white"
+},
+"View" : {
+	height: "60dp"
+	//borderWidth: 1
+},
+"Label": {
+	left: "5%"
+},
+"Label[platform=android]": {
+	color: "black",
+	font: {
+		fontSize: "16dp"
+	}
+},
+"Button[platform=android]": {
+	color: "black"
+},
+"Switch[platform=android]": {
+	color: "black"
+},
+"TextField": {
+//top: 10,
+	height: "40dp",
+	width: "65%",
+	right: "5%",
+//borderWidth: 1,
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ONFOCUS,
+	color: "black"
+},
+"#locationTxt": {
+	width: "55%",
+	right: "15%"
+},
+"#mapButton": {
+	right: "3%",
+	width: "30dp",
+	height: "30dp",
+	backgroundImage: "/geolocate.png"
+},
+"#dateBtn" : {
+	width: "65%",
+	right: "5%"
+},
+"#saveToDo": {
+	top: "30dp",
+	width: "130dp",
+	height: "50dp",
+	right: "5%"
+},
+"#alarmSw" : {
+	left: "30%"
+},
+"#iv": {
+	left: "10%",
+	width: "100dp",
+	height: "100dp"
+}

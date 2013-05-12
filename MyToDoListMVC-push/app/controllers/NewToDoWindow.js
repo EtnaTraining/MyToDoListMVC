@@ -1,0 +1,123 @@
+var todo = Alloy.Models.ToDo;
+$.alarmSw.value = false;
+$.dateBtn.title = "oggi";
+$.iv.image = "/appicon.png";
+
+var net = require('net');
+net.enablePushNotifications(showToDo);
+var acs = require('acs');
+
+var dueDate = new Date();
+todo.on("change:duedate", function(e) {
+	//$.dateBtn.title = String.formatDate(e.duedate, "medium");
+	
+	Ti.API.info(e.attributes.duedate);
+	$.dateBtn.title = String.formatDate(e.attributes.duedate, "medium");
+	
+});
+
+function saveToDo() {
+
+	if (!( typeof ($.iv.image) == "string")) {
+		var filename = Ti.Filesystem.applicationDataDirectory + $.titoloTxt.value.replace(/ /g, "_") + "_" + new Date().getTime() + ".jpg";
+		var f = Ti.Filesystem.getFile(filename);
+		f.write($.iv.image.imageAsThumbnail(100, 0, 3));
+	};
+	var newToDo = Alloy.createModel("ToDo", {
+		title : $.titoloTxt.value,
+		location : $.locationTxt.value,
+		alarm : $.alarmSw.value,
+		duedate : dueDate,
+		path : filename
+	});
+	//alert(JSON.stringify(newToDo));
+	
+	
+	
+	//Ti.API.info(newToDo.toJSON());
+	if (newToDo.isValid()) {
+		newToDo.save();
+		//net.saveToDo(newToDo.attributes);
+		acs.saveToDo(newToDo.attributes);
+		//alert($.alarmSw.value);
+		if ($.alarmSw.value) {
+			acs.registerAlarm(newToDo.attributes);
+		}
+		Alloy.Collections.ToDo.add(newToDo);
+		Alloy.Globals.tabgroup.setActiveTab(1);
+	} else {
+		alert("Inserire il titolo");
+	}
+}
+
+function showToDo(e) {
+	//Ti.API.info(JSON.stringify(e));
+	//Ti.API.info(JSON.stringify(e.payload));
+	//Ti.API.info(JSON.stringify(JSON.parse(e.payload).todo));
+	if (Ti.Platform.name === 'android') {
+		var todo = JSON.parse(e.payload).todo;
+	} else {
+		var todo = e.data.todo;
+	}
+	$.titoloTxt.value = todo.title;
+	$.locationTxt.value = todo.location;
+	$.alarmSw.value = todo.alarm;
+	$.dateBtn.title = todo.duedate;
+	$.iv.image = todo.path;
+	Alloy.Globals.tabgroup.setActiveTab(0);	
+}
+
+function chooseImg() {
+	Ti.Media.openPhotoGallery({
+		success : function(e) {
+			$.iv.image = e.media;
+		}
+	});
+}
+
+function focusLocation() {
+	Ti.API.info('titolo inserito');
+	$.locationTxt.focus();
+}
+
+function blurKeyboard() {
+	$.titoloTxt.blur();
+	$.locationTxt.blur();
+}
+
+function openDueDateWindow() {
+	var dueDateController = Alloy.createController("DueDateWindow", {
+		parent : $
+	});
+	//dueDateController.setParent($);
+	//dueDateController.setPickerDefaultDate($.dateBtn.title);
+	var dueDateWindow = dueDateController.getView();
+	dueDateWindow.open();
+}
+
+function geolocateToDo() {
+	var mapWin = Alloy.createController("MapWindow", {
+		location : $.locationTxt.value,
+		parent : $
+	});
+	mapWin.getView().open({
+		modal : true
+	});
+}
+
+function logout() {
+	if (Ti.Network.online) {
+		acs.unsubscribeForPush();
+		acs.logout();
+		var loginWin = Alloy.createController("Login").getView();
+		loginWin.open({
+			modal : true
+		});
+	}
+}
+
+exports.setDueDate = function(date) {
+	dueDate = date;
+	Ti.API.info(dueDate);
+}
+

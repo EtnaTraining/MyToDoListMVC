@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+provisioning_profiles/development/C6982372-CEC4-4718-B0D8-EE76C5D2A45E/appid=it.etnatraining.mytodolistMVCpush
+provisioning_profiles/development/C6982372-CEC4-4718-B0D8-EE76C5D2A45E/name=MyToDoListMVC Push for testing
+provisioning_profiles/development/C6982372-CEC4-4718-B0D8-EE76C5D2A45E/uuid=C6982372-CEC4-4718-B0D8-EE76C5D2A45E
+provisioning_profiles/development/D10EB250-22A1-4E17-A63D-842304FB348C/appid=it.etnatraining.*
+provisioning_profiles/development/D10EB250-22A1-4E17-A63D-842304FB348C/name=catch all provisioning profile
+provisioning_profiles/development/D10EB250-22A1-4E17-A63D-842304FB348C/uuid=D10EB250-22A1-4E17-A63D-842304FB348C

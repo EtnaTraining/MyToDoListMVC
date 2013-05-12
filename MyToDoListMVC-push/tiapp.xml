@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-service-baseurl-MyToDoListMVC-push">http://localhost:51249</property>
+    <property name="acs-oauth-secret-production" type="string">eMkvPtu4h47WQAZZXQLLF8H7V6uAncQ2</property>
+    <property name="acs-oauth-key-production" type="string">s64YbsyK7h9EKS0V8J4v7gZumbOSLd93</property>
+    <property name="acs-api-key-production" type="string">orLKXo2ieHar44DURxHvOEMF6dGTQiBX</property>
+    <property name="acs-oauth-secret-development" type="string">NAzdEICU1FS0KND3OQhPsdBBf1OBQHnv</property>
+    <property name="acs-oauth-key-development" type="string">y39tJVdURr55Ya8KCoke4sbwvWhiRh5o</property>
+    <property name="acs-api-key-development" type="string">C8GRBXQuyIh3NansM7sORoEMMGfI27Rb</property>
+    <id>it.etnatraining.mytodolistMVCpush</id>
+    <name>MyToDoListMVC-push</name>
+    <version>1.0</version>
+    <publisher>etna</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2013 by etna</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>f6bb1f7d-062f-43ff-9683-a60332abdc7b</guid>
+    <property name="ti.ui.defaultunit" type="string">system</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <tool-api-level>16</tool-api-level>
+        <manifest>
+            <uses-sdk android:minSdkVersion="5" android:targetSdkVersion="11"/>
+        </manifest>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="commonjs">ti.cloud</module>
+        <module platform="android">ti.cloudpush</module>
+    </modules>
+    <deployment-targets>
+        <target device="blackberry">false</target>
+        <target device="android">true</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">true</target>
+        <target device="tizen">false</target>
+    </deployment-targets>
+    <sdk-version>3.1.0.GA</sdk-version>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
+</ti:app>

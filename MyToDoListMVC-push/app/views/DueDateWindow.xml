@@ -1,0 +1,11 @@
+<Alloy>
+        <Window modal="true" backgroundColor="white" title="Seleziona scadenza">
+                <RightNavButton>
+                        <Button onClick="closeWindow">Close</Button>
+                </RightNavButton>
+                <Picker id="picker" platform="ios" type="Titanium.UI.PICKER_TYPE_DATE_AND_TIME" top="30" onChange="dataSelezionata"/>
+                <Picker id="picker" platform="android" type="Titanium.UI.PICKER_TYPE_DATE" top="30dp" onChange="dataSelezionata"/>
+                <Picker id="picker" platform="android" type="Titanium.UI.PICKER_TYPE_TIME" top="30dp" onChange="oraSelezionata"/>
+                <Button id="closeWindow" platform="android" onClick="closeWindow" top="30dp">Chiudi</Button>
+        </Window>
+</Alloy>

@@ -1,0 +1,10 @@
+<Alloy>
+	<TabGroup id="tg">
+		<Tab title="Nuova ToDo" icon="/KS_nav_views.png">
+			<Require src="NewToDoWindow"></Require>
+		</Tab>
+		<Tab title="Lista ToDo" icon="/KS_nav_ui.png">
+			<Require src="ListToDoWindow"></Require>
+		</Tab>
+	</TabGroup>
+</Alloy>

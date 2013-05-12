@@ -1,0 +1,16 @@
+{
+  "routes":
+  [
+    { "path": "/", "callback": "application#index" },
+    { "path": "/push", "callback": "application#broadcastPush" },
+    { "path": "/register", "method": "post", "callback": "application#registerAlarm"  }
+  ],
+  "filters":
+  [
+  	 { "path": "/", "callback": "" }
+  ],
+  "websockets":
+  [
+  	{ "event": "", "callback": ""}
+  ]
+}

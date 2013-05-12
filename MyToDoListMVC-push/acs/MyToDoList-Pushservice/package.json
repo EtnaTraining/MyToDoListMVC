@@ -1,0 +1,27 @@
+{
+  "name": "MyToDoList-Pushservice",
+  "version": "0.1.0",
+  "description": "",
+  "framework": "mvc",
+  "bodyParser": true,
+  "main": "app.js",
+  "logfile" : "MyToDoList-Pushservice.log",
+  "keywords": [
+  ],
+  "author": "",
+  "maintainers": [
+  ],
+  "contributors": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "preferGlobal": false,
+  "dependencies": {
+  	"cron": ">=1.0.0",
+  	"time": ">=0.8.0"
+  },
+  "license":"",
+  "private": true
+}
