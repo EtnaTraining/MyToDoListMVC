@@ -17,11 +17,12 @@ var todo = Alloy.Models.ToDo;
 function editToDo(e) {
 	var selToDo = todolist.at(e.index).attributes;
 	Ti.API.info(selToDo);
+	var formattedDate = String.formatDate(new Date(selToDo.duedate), "medium");
 	todo.set({
 		title: selToDo.title,
 		location: selToDo.location,
 		alarm: selToDo.alarm,
-		duedate: selToDo.duedate
+		duedate: formattedDate
 	});
 	Alloy.Globals.tabgroup.setActiveTab(0);
 }

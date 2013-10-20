@@ -13,7 +13,11 @@ exports.getToDos = function(_callback) {
 	xhr.onerror = function(e) {
 		alert("Error: " + JSON.stringify(e));
 	}
-	xhr.open("GET", "http://todolist2.nodester.com/" + uuid);
+	//xhr.open("GET", "http://todolist2.nodester.com/" + uuid);
+	xhr.open("GET", "https://6fd6170b9a42d16f84226e323f57a7cf4289c1b4.cloudapp.appcelerator.com/" + uuid);
+
+	
+
 	xhr.send();
 }
 
@@ -25,6 +29,7 @@ exports.saveToDo = function(todo) {
 	xhr.onerror = function(e) {
 		alert("Error: " + JSON.stringify(e));
 	}
-	xhr.open("POST", "http://todolist2.nodester.com/" + uuid);
+	//xhr.open("POST", "http://todolist2.nodester.com/" + uuid);
+	xhr.open("POST", "https://6fd6170b9a42d16f84226e323f57a7cf4289c1b4.cloudapp.appcelerator.com/" + uuid);
 	xhr.send(todo);
 }

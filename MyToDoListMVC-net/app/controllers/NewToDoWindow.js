@@ -18,6 +18,12 @@ function saveToDo() {
 		net.saveToDo(newToDo.attributes);
 		Alloy.Collections.ToDo.add(newToDo);
 		Alloy.Globals.tabgroup.setActiveTab(1);
+		// reset the form
+        $.titoloTxt.value = "";
+        $.locationTxt.value = "";
+        $.alarmSw.value = false;
+        $.dateBtn.title = "oggi";
+
 	} else {
 		alert("Inserire il titolo");
 	}
