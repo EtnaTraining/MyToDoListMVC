@@ -11,7 +11,9 @@ function saveToDo() {
 		var filename = Ti.Filesystem.applicationDataDirectory + $.titoloTxt.value.replace(/ /g, "_") + "_" + new Date().getTime() + ".jpg";
 		var f = Ti.Filesystem.getFile(filename);
 		f.write($.iv.image.imageAsThumbnail(100, 0, 3));
-	};
+	} else {
+		var filename = $.iv.image;
+	}
 	var newToDo = Alloy.createModel("ToDo", {
 		title : $.titoloTxt.value,
 		location : $.locationTxt.value,
@@ -25,6 +27,12 @@ function saveToDo() {
 		//net.saveToDo(newToDo.attributes);
 		Alloy.Collections.ToDo.add(newToDo);
 		Alloy.Globals.tabgroup.setActiveTab(1);
+		// reset the form
+        $.titoloTxt.value = "";
+        $.locationTxt.value = "";
+        $.alarmSw.value = false;
+        $.dateBtn.title = "oggi";
+        $.iv.image = "/appicon.png";
 	} else {
 		alert("Inserire il titolo");
 	}
