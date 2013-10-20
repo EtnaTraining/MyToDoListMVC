@@ -3,6 +3,7 @@ var acs = require('acs');
 function userCreate() {
 	acs.createUser($.username.value, $.password.value, function(e) {
 		if (e.success) {
+			Alloy.Collections.ToDo.reset([]);
 			$.logincontainer.close();
 			//Alloy.Globals.tabgroup.open();
 		} else {
