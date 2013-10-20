@@ -3,7 +3,7 @@
                 <RightNavButton>
                         <Button onClick="closeWindow">Close</Button>
                 </RightNavButton>
-                <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata"/>
+                <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" onChange="dataSelezionata"/>
                 <Button id="closeWindow" platform="android" onClick="closeWindow">Chiudi</Button>
         </Window>
 </Alloy>

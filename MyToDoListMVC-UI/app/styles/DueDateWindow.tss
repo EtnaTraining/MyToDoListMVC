@@ -1,6 +1,10 @@
 ".container": {
 	backgroundColor: "white"
 },
+"Picker": {
+	top: "30dp"
+},
 "#closeWindow": {
 	bottom: "40dp"
 }
+
