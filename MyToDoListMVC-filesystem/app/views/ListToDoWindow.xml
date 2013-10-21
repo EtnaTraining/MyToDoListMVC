@@ -1,7 +1,7 @@
 <Alloy>
         <Collection src="ToDo">
         <Window class="container" title="List of ToDos">
-                <TableView id="todoListTV" dataCollection="ToDo" dataTransform="defaultThumb" editable="true" onClick="editToDo">
+                <TableView id="todoListTV" dataCollection="ToDo" editable="true" onClick="editToDo">
                          <TableViewRow leftImage="{path}" title="{title}" hasChild="true" />
                 </TableView>
         </Window>

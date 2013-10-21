@@ -18,7 +18,7 @@ exports.definition = {
                         validate: function(attrs) {
                                 if (!attrs.title || attrs.title.length <= 0) { 
                                         Ti.API.info("nessun titolo");
-                                        return "Error: No title!"
+                                        return "Error: No title!";
                                 } 
                         }
                 });
@@ -32,4 +32,4 @@ exports.definition = {
                 
                 return Collection;
         }
-}
+};

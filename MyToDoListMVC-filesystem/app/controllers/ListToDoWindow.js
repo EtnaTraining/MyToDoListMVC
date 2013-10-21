@@ -16,10 +16,3 @@ function editToDo(e) {
 	});
 	Alloy.Globals.tabgroup.setActiveTab(0);
 }
-
-function defaultThumb(model) {
-	if (!model.get("path")) {
-		model.set("path", "/appicon.png");
-	}
-	return model;
-}
