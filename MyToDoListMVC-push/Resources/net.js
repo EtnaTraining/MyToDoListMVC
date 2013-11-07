@@ -29,21 +29,18 @@ exports.saveToDo = function(todo) {
 };
 
 exports.enablePushNotifications = function(_callback) {
-    if ("Simulator" == Titanium.Platform.model) {
-        alert("The simulator does not support push!");
-        return;
-    }
-    Ti.Network.registerForPushNotifications({
-        types: [ Ti.Network.NOTIFICATION_TYPE_BADGE, Ti.Network.NOTIFICATION_TYPE_ALERT, Ti.Network.NOTIFICATION_TYPE_SOUND ],
+    Ti.API.info("Enabling push for android");
+    var androidPush = require("ti.cloudpush");
+    androidPush.retrieveDeviceToken({
         success: function(e) {
             Ti.App.Properties.setString("deviceToken", e.deviceToken);
-            Ti.API.info("Device token:" + e.deviceToken);
+            Ti.API.info("Device token is:" + e.deviceToken);
+            androidPush.enabled = true;
+            androidPush.addEventListener("callback", _callback);
         },
         error: function() {
             Ti.API.info("Failed to register for push");
             return;
-        },
-        callback: _callback
+        }
     });
-    Ti.API.info("PushNotificationsEnabled: " + JSON.stringify(Ti.Network.remoteNotificationsEnabled) + "\nDeviceUUID: " + Ti.Network.remoteDeviceUUID + "\nremoteNotificationTypes :" + JSON.stringify(Ti.Network.remoteNotificationTypes));
 };

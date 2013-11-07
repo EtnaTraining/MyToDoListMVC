@@ -4,7 +4,7 @@ var loggedIn = false;
 
 var Cloud = require("ti.cloud");
 
-var CloudPush;
+var CloudPush = require("ti.cloudpush");
 
 exports.isLoggedIn = function() {
     return loggedIn;
@@ -80,10 +80,12 @@ exports.logout = function() {
 };
 
 exports.subscribeForPush = function() {
-    (Ti.Network.remoteNotificationsEnabled || CloudPush.enabled) && Cloud.PushNotifications.subscribe({
+    Ti.API.info("Subscribing for push");
+    var androidpush = true;
+    (Ti.Network.remoteNotificationsEnabled || androidpush) && Cloud.PushNotifications.subscribe({
         channel: "alarm",
         device_token: Ti.App.Properties.getString("deviceToken"),
-        type: "ios"
+        type: "gcm"
     }, function(e) {
         e.success ? Ti.API.info("Subscribed") : Ti.API.info("Error during push subscription: " + JSON.stringify(e));
     });
@@ -93,7 +95,7 @@ exports.unsubscribeForPush = function() {
     (Ti.Network.remoteNotificationsEnabled || CloudPush.enabled) && Cloud.PushNotifications.unsubscribe({
         channel: "alarm",
         device_token: Ti.App.Properties.getString("deviceToken"),
-        type: "ios"
+        type: "android"
     }, function(e) {
         e.success ? Ti.API.info("Unsubscribed") : Ti.API.info("Error during push unsubscription: " + JSON.stringify(e));
     });

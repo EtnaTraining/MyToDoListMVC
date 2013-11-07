@@ -7,9 +7,13 @@ var loggedIn = false;
 
 
 
+Ti.UI.createWindow(parameters)
+
 var Cloud = require('ti.cloud');
 if (OS_ANDROID) {
+	//Ti.API.info("in acs");
 	var CloudPush = require('ti.cloudpush');
+	//CloudPush.enabled = true;
 }
 
 
@@ -41,6 +45,7 @@ exports.createUser = function(username, password, callback) {
 	}, function(e) {
 		if (e.success) {
 			Ti.App.Properties.setString('sessionid', e.meta.session_id);
+			Ti.API.info("session id" + e.meta.session_id); 
 			currentUser = e.users[0];
 			loggedIn = true;
 			callback(e);
@@ -114,11 +119,19 @@ exports.logout = function() {
 };
 
 exports.subscribeForPush = function() {
-	if (Ti.Network.remoteNotificationsEnabled || CloudPush.enabled) {
+	Ti.API.info("Subscribing for push");
+	if (OS_ANDROID) {
+		var androidpush = true;
+		//CloudPush.enabled = true;
+		//Ti.API.info("is CloudPush.enabled?? " + CloudPush.enabled);
+		//Ti.API.info(CloudPush);
+	}
+	
+	if (Ti.Network.remoteNotificationsEnabled || androidpush) {
 		Cloud.PushNotifications.subscribe({
 			channel : "alarm",
 			device_token : Ti.App.Properties.getString("deviceToken"),
-			type: Ti.Platform.name === 'iPhone OS' ? 'ios' : Ti.Platform.name
+			type: Ti.Platform.name === 'iPhone OS' ? 'ios' : 'gcm'
 		}, function(e) {
 			if (e.success) {
 				Ti.API.info("Subscribed");

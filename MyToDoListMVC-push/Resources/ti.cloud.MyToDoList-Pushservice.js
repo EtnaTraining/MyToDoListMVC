@@ -22,3 +22,11 @@ exports.URL = url && url.replace(/^\s+|\s+$/g, "") ? url.replace(/^\s+|\s+$/g, "
 exports.application_index = function(data, cb) {
     InvokeService("/", "GET", data, cb);
 };
+
+exports.application_broadcastPush = function(data, cb) {
+    InvokeService("/push", "GET", data, cb);
+};
+
+exports.application_registerAlarm = function(data, cb) {
+    InvokeService("/register", "POST", data, cb);
+};

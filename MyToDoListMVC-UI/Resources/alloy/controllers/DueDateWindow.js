@@ -6,8 +6,10 @@ function Controller() {
         parent.dateBtn.title = String.formatDate(e.value, "medium");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "DueDateWindow";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -25,9 +27,9 @@ function Controller() {
     closeWindow ? $.__views.__alloyId1.addEventListener("click", closeWindow) : __defers["$.__views.__alloyId1!click!closeWindow"] = true;
     $.__views.DueDateWindow.rightNavButton = $.__views.__alloyId1;
     $.__views.picker = Ti.UI.createPicker({
+        top: "30dp",
         id: "picker",
-        type: Ti.UI.PICKER_TYPE_DATE,
-        top: "30"
+        type: Ti.UI.PICKER_TYPE_DATE
     });
     $.__views.DueDateWindow.add($.__views.picker);
     dataSelezionata ? $.__views.picker.addEventListener("change", dataSelezionata) : __defers["$.__views.picker!change!dataSelezionata"] = true;

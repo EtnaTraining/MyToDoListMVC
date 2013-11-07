@@ -1,9 +1,26 @@
 function Controller() {
+    function __alloyId21() {
+        $.__views.rootWin.removeEventListener("open", __alloyId21);
+        if ($.__views.rootWin.activity) $.__views.rootWin.activity.onCreateOptionsMenu = function(e) {
+            var __alloyId20 = {
+                id: "cancel",
+                title: "Offline"
+            };
+            $.__views.cancel = e.menu.add(_.pick(__alloyId20, Alloy.Android.menuItemCreateArgs));
+            $.__views.cancel.applyProperties(_.omit(__alloyId20, Alloy.Android.menuItemCreateArgs));
+            cancelLogin ? $.__views.cancel.addEventListener("click", cancelLogin) : __defers["$.__views.cancel!click!cancelLogin"] = true;
+        }; else {
+            Ti.API.warn("You attempted to attach an Android Menu to a lightweight Window");
+            Ti.API.warn("or other UI component which does not have an Android activity.");
+            Ti.API.warn("Android Menus can only be opened on TabGroups and heavyweight Windows.");
+        }
+    }
     function userCreate() {
         acs.createUser($.username.value, $.password.value, function(e) {
             if (e.success) {
                 acs.subscribeForPush();
-                $.logincontainer.close();
+                Alloy.Collections.ToDo.reset([]);
+                $.rootWin.close();
             } else alert("Error during user creation: " + e.message);
         });
     }
@@ -13,44 +30,40 @@ function Controller() {
                 acs.subscribeForPush();
                 acs.getToDos(function(todolist) {
                     Alloy.Collections.ToDo.reset(todolist);
-                    $.logincontainer.close();
+                    $.rootWin.close();
                 });
             } else alert("Error during login: " + e.message);
         });
     }
     function cancelLogin() {
         Alloy.Collections.ToDo.fetch();
-        $.logincontainer.close();
+        $.rootWin.close();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "Login";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.logincontainer = Ti.UI.createWindow({
-        id: "logincontainer",
+    $.__views.rootWin = Ti.UI.createWindow({
+        backgroundColor: "black",
+        id: "rootWin",
         title: "Cloud Login"
     });
-    $.__views.logincontainer && $.addTopLevelView($.__views.logincontainer);
-    $.__views.cancel = Ti.UI.createButton({
-        id: "cancel",
-        title: "Offline"
-    });
-    cancelLogin ? $.__views.cancel.addEventListener("click", cancelLogin) : __defers["$.__views.cancel!click!cancelLogin"] = true;
-    $.__views.logincontainer.leftNavButton = $.__views.cancel;
+    $.__views.rootWin && $.addTopLevelView($.__views.rootWin);
+    $.__views.rootWin.addEventListener("open", __alloyId21);
     $.__views.wrapper = Ti.UI.createView({
         backgroundColor: "white",
         borderRadius: 8,
-        borderColor: "#000",
-        borderWidth: 2,
         width: "300dp",
         height: "350dp",
         top: "20dp",
         layout: "vertical",
         id: "wrapper"
     });
-    $.__views.logincontainer.add($.__views.wrapper);
+    $.__views.rootWin.add($.__views.wrapper);
     $.__views.img = Ti.UI.createImageView({
         top: "10dp",
         width: "100dp",
@@ -108,6 +121,9 @@ function Controller() {
     _.extend($, $.__views);
     var acs = require("acs");
     __defers["$.__views.cancel!click!cancelLogin"] && $.__views.cancel.addEventListener("click", cancelLogin);
+    __defers["$.__views.cancel!click!cancelLogin"] && $.__views.cancel.addEventListener("click", cancelLogin);
+    __defers["$.__views.usercreate!click!userCreate"] && $.__views.usercreate.addEventListener("click", userCreate);
+    __defers["$.__views.login!click!login"] && $.__views.login.addEventListener("click", login);
     __defers["$.__views.cancel!click!cancelLogin"] && $.__views.cancel.addEventListener("click", cancelLogin);
     __defers["$.__views.usercreate!click!userCreate"] && $.__views.usercreate.addEventListener("click", userCreate);
     __defers["$.__views.login!click!login"] && $.__views.login.addEventListener("click", login);

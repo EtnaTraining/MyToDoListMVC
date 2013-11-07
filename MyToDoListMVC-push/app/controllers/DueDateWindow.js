@@ -17,15 +17,16 @@ exports.setPickerDefaultDate = function(date) {
 } */
 
 function closeWindow() {
-	$.DueDateWindow.close();
+	$.rootWin.close();
 }
 
 function dataSelezionata(e) {
 	parent.setDueDate(e.value);
-	parent.dateBtn.title = String.formatDate(e.value, "medium");
+	//parent.dateBtn.title = String.formatDate(e.value, "medium");
 }
 
 function oraSelezionata(e) {
 	Ti.API.info(JSON.stringify(e.value));
+	parent.setDueTime(e.value);
 }
 

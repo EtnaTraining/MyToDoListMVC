@@ -1,4 +1,5 @@
 <Alloy>
+    <NavigationWindow platform="ios">
 	<Window id="logincontainer" title="Cloud Login" class="logincontainer">
 		<LeftNavButton platform="ios">
 			<Button id="cancel" title="Offline" onClick="cancelLogin"/>
@@ -14,5 +15,5 @@
                         <Button id='login' onClick="login"/>
                 </View>
         </Window>
-
+     </NavigationWindow>
 </Alloy>

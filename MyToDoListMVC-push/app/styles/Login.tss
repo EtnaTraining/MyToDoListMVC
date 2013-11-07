@@ -1,13 +1,13 @@
 ".logincontainer[platform=android]": {
         backgroundColor: "black",
-        opacity: "0.7"
+        //opacity: "0.7"
        
 },
 "#wrapper": {
         backgroundColor: "white",
         borderRadius: 8,
-        borderColor: '#000',
-        borderWidth: 2,
+        //borderColor: '#000',
+        //borderWidth: 2,
         width: "300dp",
         height: "350dp",
         top: "20dp",

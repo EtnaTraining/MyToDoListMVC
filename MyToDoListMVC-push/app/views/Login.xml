@@ -1,11 +1,25 @@
 <Alloy>
-	<Window id="logincontainer" title="Cloud Login" class="logincontainer">
-		<LeftNavButton platform="ios">
-			<Button id="cancel" title="Offline" onClick="cancelLogin"/>
-		</LeftNavButton>
-		<Menu id="menu" platform="android">
+        <NavigationWindow id="rootWin" platform="ios">
+	       <Window title="Cloud Login" class="logincontainer">
+			<LeftNavButton platform="ios">
+				<Button id="cancel" title="Offline" onClick="cancelLogin"/>
+			</LeftNavButton>
+			<Menu id="menu" platform="android">
 				<MenuItem id="cancel" title="Offline" onClick="cancelLogin" />
-		</Menu>
+			</Menu>
+                <View id='wrapper'>
+                        <ImageView image="/login.png" id='img'/>
+                        <TextField id='username' hintText='username'/>
+                        <TextField id='password' hintText='password'/>
+                        <Button id='usercreate' onClick="userCreate"/>
+                        <Button id='login' onClick="login"/>
+                </View>
+                </Window>
+        </NavigationWindow>
+        <Window id="rootWin" title="Cloud Login" class="logincontainer" platform="android">
+                        <Menu id="menu" platform="android">
+                                <MenuItem id="cancel" title="Offline" onClick="cancelLogin" />
+                        </Menu>
                 <View id='wrapper'>
                         <ImageView image="/login.png" id='img'/>
                         <TextField id='username' hintText='username'/>
@@ -14,5 +28,5 @@
                         <Button id='login' onClick="login"/>
                 </View>
         </Window>
-
+     
 </Alloy>

@@ -4,7 +4,7 @@
 			<Require src="NewToDoWindow"></Require>
 		</Tab>
 		<Tab title="Lista ToDo" icon="KS_nav_views.png">
-			<Require src="ListTodoWindow"></Require>
+			<Require src="ListToDoWindow"></Require>
 		</Tab>
 	</TabGroup>
 </Alloy>

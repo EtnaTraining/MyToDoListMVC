@@ -64,7 +64,7 @@ exports.enablePushNotifications = function(_callback) {
 		androidPush.retrieveDeviceToken({
 			success: function(e) {
 				Ti.App.Properties.setString("deviceToken", e.deviceToken);
-				Ti.API.info("Device token:" + e.deviceToken);
+				Ti.API.info("Device token is:" + e.deviceToken);
 				androidPush.enabled = true;	
 				androidPush.addEventListener('callback', _callback);
 			},

@@ -3,8 +3,10 @@ function Controller() {
         $.MapWindow.close();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "MapWindow";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -12,13 +14,19 @@ function Controller() {
         id: "MapWindow"
     });
     $.__views.MapWindow && $.addTopLevelView($.__views.MapWindow);
-    var __alloyId21 = [];
+    $.__views.__alloyId14 = Ti.UI.createButton({
+        title: "Chiudi",
+        id: "__alloyId14"
+    });
+    closeMapWin ? $.__views.__alloyId14.addEventListener("click", closeMapWin) : __defers["$.__views.__alloyId14!click!closeMapWin"] = true;
+    $.__views.MapWindow.rightNavButton = $.__views.__alloyId14;
+    var __alloyId15 = [];
     $.__views.todoPosition = Ti.Map.createAnnotation({
         id: "todoPosition"
     });
-    __alloyId21.push($.__views.todoPosition);
+    __alloyId15.push($.__views.todoPosition);
     $.__views.todoMap = Ti.Map.createView({
-        annotations: __alloyId21,
+        annotations: __alloyId15,
         ns: Ti.Map,
         id: "todoMap"
     });
@@ -64,7 +72,7 @@ function Controller() {
             $.todoMap.selectAnnotation($.todoPosition);
         });
     }
-    __defers["$.__views.__alloyId20!click!closeMapWin"] && $.__views.__alloyId20.addEventListener("click", closeMapWin);
+    __defers["$.__views.__alloyId14!click!closeMapWin"] && $.__views.__alloyId14.addEventListener("click", closeMapWin);
     _.extend($, exports);
 }
 

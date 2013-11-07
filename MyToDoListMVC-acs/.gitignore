@@ -1,6 +1,7 @@
 .DS_Store
 build.log
 build
+Resources
 npm-debug.log
 tmp
 .map

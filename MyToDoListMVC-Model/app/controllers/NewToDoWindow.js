@@ -3,7 +3,7 @@ var todo = Alloy.Models.ToDo;
 $.alarmSw.value = false;
 $.dateBtn.title = "oggi";
 
-var net = require('net');
+//var net = require('net');
 
 function saveToDo() {
 	var newToDo = Alloy.createModel("ToDo", {

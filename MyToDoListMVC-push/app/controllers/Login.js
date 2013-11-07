@@ -4,7 +4,8 @@ function userCreate() {
 	acs.createUser($.username.value, $.password.value, function(e) {
 		if (e.success) {
 			acs.subscribeForPush();
-			$.logincontainer.close();
+			Alloy.Collections.ToDo.reset([]);
+			$.rootWin.close();
 			//Alloy.Globals.tabgroup.open();
 		} else {
 			alert("Error during user creation: " + e.message);
@@ -19,7 +20,7 @@ function login() {
 			acs.getToDos(function (todolist) {
 				//Ti.API.info(todolist);	
 				Alloy.Collections.ToDo.reset(todolist);
-				$.logincontainer.close();
+				$.rootWin.close();
 			});
 			
 		} else {
@@ -30,5 +31,5 @@ function login() {
 
 function cancelLogin() {
 	Alloy.Collections.ToDo.fetch();
-	$.logincontainer.close();
+	$.rootWin.close();
 }

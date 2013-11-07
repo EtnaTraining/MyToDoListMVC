@@ -1,7 +1,9 @@
 function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "ListToDoWindow";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     $.__views.ListToDoWindow = Ti.UI.createWindow({
@@ -10,7 +12,7 @@ function Controller() {
         id: "ListToDoWindow"
     });
     $.__views.ListToDoWindow && $.addTopLevelView($.__views.ListToDoWindow);
-    $.__views.__alloyId10 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId3 = Ti.UI.createTableViewRow({
         font: {
             fontSize: "14dp"
         },
@@ -19,12 +21,12 @@ function Controller() {
         leftImage: "/appicon.png",
         title: "Titolo",
         hasChild: "true",
-        id: "__alloyId10"
+        id: "__alloyId3"
     });
-    var __alloyId11 = [];
-    __alloyId11.push($.__views.__alloyId10);
+    var __alloyId4 = [];
+    __alloyId4.push($.__views.__alloyId3);
     $.__views.todoListTV = Ti.UI.createTableView({
-        data: __alloyId11,
+        data: __alloyId4,
         id: "todoListTV",
         editable: "true"
     });

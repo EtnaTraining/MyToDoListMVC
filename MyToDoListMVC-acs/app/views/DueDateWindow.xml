@@ -1,4 +1,5 @@
 <Alloy>
+	<NavigationWindow>
         <Window modal="true" backgroundColor="white" title="Seleziona scadenza">
                 <RightNavButton>
                         <Button onClick="closeWindow">Close</Button>
@@ -6,4 +7,5 @@
                 <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata"/>
                 <Button id="closeWindow" platform="android" onClick="closeWindow">Chiudi</Button>
         </Window>
+    </NavigationWindow>
 </Alloy>

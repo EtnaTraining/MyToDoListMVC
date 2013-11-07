@@ -1,17 +1,23 @@
 function Controller() {
-    function __alloyId17() {
-        var models = __alloyId16.models;
+    function __alloyId9() {
+        __alloyId9.opts || {};
+        var models = __alloyId8.models;
         var len = models.length;
         var rows = [];
         for (var i = 0; len > i; i++) {
-            var __alloyId14 = models[i];
-            __alloyId14.__transform = {};
-            var __alloyId15 = Ti.UI.createTableViewRow({
+            var __alloyId6 = models[i];
+            __alloyId6.__transform = {};
+            var __alloyId7 = Ti.UI.createTableViewRow({
+                font: {
+                    fontSize: "14dp"
+                },
+                color: "black",
+                height: "40dp",
                 leftImage: "/appicon.png",
-                title: "undefined" != typeof __alloyId14.__transform["title"] ? __alloyId14.__transform["title"] : __alloyId14.get("title"),
+                title: "undefined" != typeof __alloyId6.__transform["title"] ? __alloyId6.__transform["title"] : __alloyId6.get("title"),
                 hasChild: "true"
             });
-            rows.push(__alloyId15);
+            rows.push(__alloyId7);
         }
         $.__views.todoListTV.setData(rows);
     }
@@ -27,8 +33,10 @@ function Controller() {
         Alloy.Globals.tabgroup.setActiveTab(0);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "ListToDoWindow";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -44,11 +52,11 @@ function Controller() {
         editable: "true"
     });
     $.__views.ListToDoWindow.add($.__views.todoListTV);
-    var __alloyId16 = Alloy.Collections["ToDo"] || ToDo;
-    __alloyId16.on("fetch destroy change add remove reset", __alloyId17);
+    var __alloyId8 = Alloy.Collections["ToDo"] || ToDo;
+    __alloyId8.on("fetch destroy change add remove reset", __alloyId9);
     editToDo ? $.__views.todoListTV.addEventListener("click", editToDo) : __defers["$.__views.todoListTV!click!editToDo"] = true;
     exports.destroy = function() {
-        __alloyId16.off("fetch destroy change add remove reset", __alloyId17);
+        __alloyId8.off("fetch destroy change add remove reset", __alloyId9);
     };
     _.extend($, $.__views);
     var todolist = Alloy.Collections.ToDo;

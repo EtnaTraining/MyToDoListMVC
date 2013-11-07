@@ -1,6 +1,6 @@
 function Controller() {
     function saveToDo() {
-        if (!("string" == typeof $.iv.image)) {
+        if ("string" == typeof $.iv.image) var filename = $.iv.image; else {
             var filename = Ti.Filesystem.applicationDataDirectory + $.titoloTxt.value.replace(/ /g, "_") + "_" + new Date().getTime() + ".jpg";
             var f = Ti.Filesystem.getFile(filename);
             f.write($.iv.image.imageAsThumbnail(100, 0, 3));
@@ -16,6 +16,11 @@ function Controller() {
             newToDo.save();
             Alloy.Collections.ToDo.add(newToDo);
             Alloy.Globals.tabgroup.setActiveTab(1);
+            $.titoloTxt.value = "";
+            $.locationTxt.value = "";
+            $.alarmSw.value = false;
+            $.dateBtn.title = "oggi";
+            $.iv.image = "/appicon.png";
         } else alert("Inserire il titolo");
     }
     function chooseImg() {
@@ -50,8 +55,10 @@ function Controller() {
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
+    this.__controllerPath = "NewToDoWindow";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
     arguments[0] ? arguments[0]["$model"] : null;
+    arguments[0] ? arguments[0]["__itemTemplate"] : null;
     var $ = this;
     var exports = {};
     var __defers = {};
@@ -63,21 +70,17 @@ function Controller() {
         id: "NewToDoWindow"
     });
     $.__views.NewToDoWindow && $.addTopLevelView($.__views.NewToDoWindow);
-    $.__views.__alloyId23 = Ti.UI.createView({
+    $.__views.__alloyId15 = Ti.UI.createView({
         height: "60dp",
-        id: "__alloyId23"
+        id: "__alloyId15"
     });
-    $.__views.NewToDoWindow.add($.__views.__alloyId23);
-    $.__views.__alloyId24 = Ti.UI.createLabel({
+    $.__views.NewToDoWindow.add($.__views.__alloyId15);
+    $.__views.__alloyId16 = Ti.UI.createLabel({
         left: "5%",
-        color: "black",
-        font: {
-            fontSize: "16dp"
-        },
         text: "Titolo",
-        id: "__alloyId24"
+        id: "__alloyId16"
     });
-    $.__views.__alloyId23.add($.__views.__alloyId24);
+    $.__views.__alloyId15.add($.__views.__alloyId16);
     $.__views.titoloTxt = Ti.UI.createTextField({
         height: "40dp",
         width: "65%",
@@ -87,24 +90,20 @@ function Controller() {
         id: "titoloTxt",
         returnKeyType: Ti.UI.RETURNKEY_NEXT
     });
-    $.__views.__alloyId23.add($.__views.titoloTxt);
+    $.__views.__alloyId15.add($.__views.titoloTxt);
     focusLocation ? $.__views.titoloTxt.addEventListener("return", focusLocation) : __defers["$.__views.titoloTxt!return!focusLocation"] = true;
-    $.__views.__alloyId25 = Ti.UI.createView({
+    $.__views.__alloyId17 = Ti.UI.createView({
         height: "60dp",
-        id: "__alloyId25"
+        id: "__alloyId17"
     });
-    $.__views.NewToDoWindow.add($.__views.__alloyId25);
-    blurKeyboard ? $.__views.__alloyId25.addEventListener("click", blurKeyboard) : __defers["$.__views.__alloyId25!click!blurKeyboard"] = true;
-    $.__views.__alloyId26 = Ti.UI.createLabel({
+    $.__views.NewToDoWindow.add($.__views.__alloyId17);
+    blurKeyboard ? $.__views.__alloyId17.addEventListener("click", blurKeyboard) : __defers["$.__views.__alloyId17!click!blurKeyboard"] = true;
+    $.__views.__alloyId18 = Ti.UI.createLabel({
         left: "5%",
-        color: "black",
-        font: {
-            fontSize: "16dp"
-        },
         text: "Location",
-        id: "__alloyId26"
+        id: "__alloyId18"
     });
-    $.__views.__alloyId25.add($.__views.__alloyId26);
+    $.__views.__alloyId17.add($.__views.__alloyId18);
     $.__views.locationTxt = Ti.UI.createTextField({
         height: "40dp",
         width: "55%",
@@ -113,7 +112,7 @@ function Controller() {
         clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ONFOCUS,
         id: "locationTxt"
     });
-    $.__views.__alloyId25.add($.__views.locationTxt);
+    $.__views.__alloyId17.add($.__views.locationTxt);
     blurKeyboard ? $.__views.locationTxt.addEventListener("return", blurKeyboard) : __defers["$.__views.locationTxt!return!blurKeyboard"] = true;
     $.__views.mapButton = Ti.UI.createButton({
         right: "3%",
@@ -122,64 +121,56 @@ function Controller() {
         backgroundImage: "/geolocate.png",
         id: "mapButton"
     });
-    $.__views.__alloyId25.add($.__views.mapButton);
+    $.__views.__alloyId17.add($.__views.mapButton);
     geolocateToDo ? $.__views.mapButton.addEventListener("click", geolocateToDo) : __defers["$.__views.mapButton!click!geolocateToDo"] = true;
-    $.__views.__alloyId27 = Ti.UI.createView({
+    $.__views.__alloyId19 = Ti.UI.createView({
         height: "60dp",
-        id: "__alloyId27"
+        id: "__alloyId19"
     });
-    $.__views.NewToDoWindow.add($.__views.__alloyId27);
-    blurKeyboard ? $.__views.__alloyId27.addEventListener("click", blurKeyboard) : __defers["$.__views.__alloyId27!click!blurKeyboard"] = true;
-    $.__views.__alloyId28 = Ti.UI.createLabel({
+    $.__views.NewToDoWindow.add($.__views.__alloyId19);
+    blurKeyboard ? $.__views.__alloyId19.addEventListener("click", blurKeyboard) : __defers["$.__views.__alloyId19!click!blurKeyboard"] = true;
+    $.__views.__alloyId20 = Ti.UI.createLabel({
         left: "5%",
-        color: "black",
-        font: {
-            fontSize: "16dp"
-        },
         text: "Allarme",
-        id: "__alloyId28"
+        id: "__alloyId20"
     });
-    $.__views.__alloyId27.add($.__views.__alloyId28);
+    $.__views.__alloyId19.add($.__views.__alloyId20);
     $.__views.alarmSw = Ti.UI.createSwitch({
         left: "30%",
         id: "alarmSw"
     });
-    $.__views.__alloyId27.add($.__views.alarmSw);
+    $.__views.__alloyId19.add($.__views.alarmSw);
     blurKeyboard ? $.__views.alarmSw.addEventListener("change", blurKeyboard) : __defers["$.__views.alarmSw!change!blurKeyboard"] = true;
-    $.__views.__alloyId29 = Ti.UI.createView({
+    $.__views.__alloyId21 = Ti.UI.createView({
         height: "60dp",
-        id: "__alloyId29"
+        id: "__alloyId21"
     });
-    $.__views.NewToDoWindow.add($.__views.__alloyId29);
-    $.__views.__alloyId30 = Ti.UI.createLabel({
+    $.__views.NewToDoWindow.add($.__views.__alloyId21);
+    $.__views.__alloyId22 = Ti.UI.createLabel({
         left: "5%",
-        color: "black",
-        font: {
-            fontSize: "16dp"
-        },
         text: "Scadenza",
-        id: "__alloyId30"
+        id: "__alloyId22"
     });
-    $.__views.__alloyId29.add($.__views.__alloyId30);
+    $.__views.__alloyId21.add($.__views.__alloyId22);
     $.__views.dateBtn = Ti.UI.createButton({
         width: "65%",
         right: "5%",
         id: "dateBtn"
     });
-    $.__views.__alloyId29.add($.__views.dateBtn);
+    $.__views.__alloyId21.add($.__views.dateBtn);
     openDueDateWindow ? $.__views.dateBtn.addEventListener("click", openDueDateWindow) : __defers["$.__views.dateBtn!click!openDueDateWindow"] = true;
-    $.__views.__alloyId31 = Ti.UI.createView({
+    $.__views.__alloyId23 = Ti.UI.createView({
         height: Ti.UI.FILL,
-        id: "__alloyId31"
+        id: "__alloyId23"
     });
-    $.__views.NewToDoWindow.add($.__views.__alloyId31);
+    $.__views.NewToDoWindow.add($.__views.__alloyId23);
     $.__views.iv = Ti.UI.createImageView({
         left: "10%",
         width: "100dp",
         height: "100dp",
         id: "iv"
     });
-    $.__views.__alloyId31.add($.__views.iv);
+    $.__views.__alloyId23.add($.__views.iv);
     chooseImg ? $.__views.iv.addEventListener("click", chooseImg) : __defers["$.__views.iv!click!chooseImg"] = true;
     $.__views.saveToDo = Ti.UI.createButton({
         top: "30dp",
@@ -189,18 +180,23 @@ function Controller() {
         title: "Salva ToDo",
         id: "saveToDo"
     });
-    $.__views.__alloyId31.add($.__views.saveToDo);
+    $.__views.__alloyId23.add($.__views.saveToDo);
     saveToDo ? $.__views.saveToDo.addEventListener("click", saveToDo) : __defers["$.__views.saveToDo!click!saveToDo"] = true;
-    var __alloyId32 = function() {
+    var __alloyId24 = function() {
+        $.titoloTxt.value = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["title"] : Alloy.Models.ToDo.get("title");
         $.titoloTxt.value = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["title"] : Alloy.Models.ToDo.get("title");
         $.locationTxt.value = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["location"] : Alloy.Models.ToDo.get("location");
+        $.locationTxt.value = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["location"] : Alloy.Models.ToDo.get("location");
+        $.alarmSw.value = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["alarm"] : Alloy.Models.ToDo.get("alarm");
         $.alarmSw.value = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["alarm"] : Alloy.Models.ToDo.get("alarm");
         $.dateBtn.title = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["duedate"] : Alloy.Models.ToDo.get("duedate");
+        $.dateBtn.title = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["duedate"] : Alloy.Models.ToDo.get("duedate");
+        $.iv.image = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["path"] : Alloy.Models.ToDo.get("path");
         $.iv.image = _.isFunction(Alloy.Models.ToDo.transform) ? Alloy.Models.ToDo.transform()["path"] : Alloy.Models.ToDo.get("path");
     };
-    Alloy.Models.ToDo.on("fetch change destroy", __alloyId32);
+    Alloy.Models.ToDo.on("fetch change destroy", __alloyId24);
     exports.destroy = function() {
-        Alloy.Models.ToDo.off("fetch change destroy", __alloyId32);
+        Alloy.Models.ToDo.off("fetch change destroy", __alloyId24);
     };
     _.extend($, $.__views);
     Alloy.Models.ToDo;
@@ -209,10 +205,10 @@ function Controller() {
     $.iv.image = "/appicon.png";
     require("net");
     __defers["$.__views.titoloTxt!return!focusLocation"] && $.__views.titoloTxt.addEventListener("return", focusLocation);
-    __defers["$.__views.__alloyId25!click!blurKeyboard"] && $.__views.__alloyId25.addEventListener("click", blurKeyboard);
+    __defers["$.__views.__alloyId17!click!blurKeyboard"] && $.__views.__alloyId17.addEventListener("click", blurKeyboard);
     __defers["$.__views.locationTxt!return!blurKeyboard"] && $.__views.locationTxt.addEventListener("return", blurKeyboard);
     __defers["$.__views.mapButton!click!geolocateToDo"] && $.__views.mapButton.addEventListener("click", geolocateToDo);
-    __defers["$.__views.__alloyId27!click!blurKeyboard"] && $.__views.__alloyId27.addEventListener("click", blurKeyboard);
+    __defers["$.__views.__alloyId19!click!blurKeyboard"] && $.__views.__alloyId19.addEventListener("click", blurKeyboard);
     __defers["$.__views.alarmSw!change!blurKeyboard"] && $.__views.alarmSw.addEventListener("change", blurKeyboard);
     __defers["$.__views.dateBtn!click!openDueDateWindow"] && $.__views.dateBtn.addEventListener("click", openDueDateWindow);
     __defers["$.__views.iv!click!chooseImg"] && $.__views.iv.addEventListener("click", chooseImg);

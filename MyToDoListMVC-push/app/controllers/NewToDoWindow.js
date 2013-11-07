@@ -8,11 +8,15 @@ net.enablePushNotifications(showToDo);
 var acs = require('acs');
 
 var dueDate = new Date();
+var dueTime = new Date();
+
+// it is used to update on ListToDo selection the dateBtn button formatting properly the date
 todo.on("change:duedate", function(e) {
 	//$.dateBtn.title = String.formatDate(e.duedate, "medium");
 	
 	Ti.API.info(e.attributes.duedate);
-	$.dateBtn.title = String.formatDate(e.attributes.duedate, "medium");
+	var d = new Date(e.attributes.duedate*1000);
+	$.dateBtn.title = String.formatDate(d, "medium");
 	
 });
 
@@ -38,13 +42,22 @@ function saveToDo() {
 	if (newToDo.isValid()) {
 		newToDo.save();
 		//net.saveToDo(newToDo.attributes);
-		acs.saveToDo(newToDo.attributes);
-		//alert($.alarmSw.value);
-		if ($.alarmSw.value) {
-			acs.registerAlarm(newToDo.attributes);
+		if (Ti.Network.online) {
+			acs.saveToDo(newToDo.attributes);
+			//alert($.alarmSw.value);
+			if ($.alarmSw.value) {
+				acs.registerAlarm(newToDo.attributes);
+			}
 		}
 		Alloy.Collections.ToDo.add(newToDo);
 		Alloy.Globals.tabgroup.setActiveTab(1);
+		// reset the form
+        $.titoloTxt.value = "";
+        $.locationTxt.value = "";
+        $.alarmSw.value = false;
+        $.dateBtn.title = "oggi";
+        $.iv.image = "/appicon.png";
+
 	} else {
 		alert("Inserire il titolo");
 	}
@@ -92,7 +105,15 @@ function openDueDateWindow() {
 	//dueDateController.setParent($);
 	//dueDateController.setPickerDefaultDate($.dateBtn.title);
 	var dueDateWindow = dueDateController.getView();
-	dueDateWindow.open();
+	/*if (OS_IOS) {
+		Ti.UI.iOS.createNavigationWindow({
+			modal : true,
+			window : dueDateWindow.open()
+		}).open();
+	} else { */
+		dueDateWindow.open();
+	/*} */
+	
 }
 
 function geolocateToDo() {
@@ -118,6 +139,28 @@ function logout() {
 
 exports.setDueDate = function(date) {
 	dueDate = date;
-	Ti.API.info(dueDate);
+	if (OS_ANDROID) {
+                Ti.API.info("solo android");
+                var hours = dueTime.getHours();
+                var min = dueTime.getMinutes();
+                dueDate.setHours(hours);
+                dueDate.setMinutes(min);
+
+        }
+
+    $.dateBtn.title = String.formatDate(dueDate, "medium");
+    Ti.API.info("in setDueDate");
+    Ti.API.info(dueDate.toLocaleString());
+}
+
+exports.setDueTime = function(time) {
+        dueTime = time;
+        var hours = time.getHours();
+        var min = time.getMinutes();
+        dueDate.setHours(hours);
+        dueDate.setMinutes(min);
+        $.dateBtn.title = String.formatDate(dueDate, "medium");
+        Ti.API.info("in setDueTime");
+        Ti.API.info(dueDate.toLocaleString());
 }
 
