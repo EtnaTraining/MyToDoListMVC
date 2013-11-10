@@ -1,3 +1,6 @@
 ".container": {
 	backgroundColor: "white"
+},
+"#todoPosition[platform=android]": {
+	image: "pin.png"
 }

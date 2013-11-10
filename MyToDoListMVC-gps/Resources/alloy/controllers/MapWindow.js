@@ -14,19 +14,14 @@ function Controller() {
         id: "MapWindow"
     });
     $.__views.MapWindow && $.addTopLevelView($.__views.MapWindow);
-    $.__views.__alloyId11 = Ti.UI.createButton({
-        title: "Chiudi",
-        id: "__alloyId11"
-    });
-    closeMapWin ? $.__views.__alloyId11.addEventListener("click", closeMapWin) : __defers["$.__views.__alloyId11!click!closeMapWin"] = true;
-    $.__views.MapWindow.rightNavButton = $.__views.__alloyId11;
-    var __alloyId12 = [];
+    var __alloyId14 = [];
     $.__views.todoPosition = Ti.Map.createAnnotation({
+        image: "pin.png",
         id: "todoPosition"
     });
-    __alloyId12.push($.__views.todoPosition);
+    __alloyId14.push($.__views.todoPosition);
     $.__views.todoMap = Ti.Map.createView({
-        annotations: __alloyId12,
+        annotations: __alloyId14,
         ns: Ti.Map,
         id: "todoMap"
     });
@@ -35,44 +30,55 @@ function Controller() {
     _.extend($, $.__views);
     var args = arguments[0] || {};
     Ti.Geolocation.purpose = "Map your todos";
-    Ti.API.info(JSON.stringify("Geo enabled" + Ti.Geolocation.locationServicesEnabled));
+    Ti.API.info(JSON.stringify("Geo enabled: " + Ti.Geolocation.locationServicesEnabled));
     if (Ti.Geolocation.locationServicesEnabled && "" == args.location) {
         Ti.API.info("geolocalizziamoci");
         Ti.Geolocation.getCurrentPosition(function(e) {
-            Ti.API.info(JSON.stringify(e));
-            $.todoMap.region = {
-                latitude: e.coords.latitude,
-                longitude: e.coords.longitude,
-                latitudeDelta: .01,
-                longitudeDelta: .01
-            };
-            $.todoPosition.latitude = e.coords.latitude;
-            $.todoPosition.longitude = e.coords.longitude;
-            $.todoPosition.title = args.parent.titoloTxt.value || "todo";
-            $.todoMap.selectAnnotation($.todoPosition);
-            Ti.Geolocation.reverseGeocoder(e.coords.latitude, e.coords.longitude, function(e) {
-                Ti.API.info(e.places[0].address);
-                args.parent.locationTxt.value = e.places[0].address;
-            });
+            if (e.success) {
+                Ti.API.info(JSON.stringify(e));
+                $.todoMap.region = {
+                    latitude: e.coords.latitude,
+                    longitude: e.coords.longitude,
+                    latitudeDelta: .01,
+                    longitudeDelta: .01
+                };
+                $.todoPosition.latitude = e.coords.latitude;
+                $.todoPosition.longitude = e.coords.longitude;
+                $.todoPosition.pinImage = "pin.png";
+                $.todoPosition.title = args.parent.titoloTxt.value || "todo";
+                $.todoMap.selectAnnotation($.todoPosition);
+                Ti.Geolocation.reverseGeocoder(e.coords.latitude, e.coords.longitude, function(e) {
+                    Ti.API.info(e.places[0].address);
+                    args.parent.locationTxt.value = e.places[0].address;
+                });
+            } else {
+                Ti.API.info("Error while getting the currentPosition");
+                Ti.API.info(JSON.stringify(e));
+            }
         });
     } else {
         Ti.API.info("troviamo la posizione giusta");
         Ti.Geolocation.forwardGeocoder(args.location, function(e) {
-            Ti.API.info(args.location);
-            Ti.API.info(JSON.stringify(e));
-            $.todoMap.region = {
-                latitude: e.latitude,
-                longitude: e.longitude,
-                latitudeDelta: .1,
-                longitudeDelta: .1
-            };
-            $.todoPosition.latitude = e.latitude;
-            $.todoPosition.longitude = e.longitude;
-            $.todoPosition.title = args.parent.titoloTxt.value || "todo";
-            $.todoMap.selectAnnotation($.todoPosition);
+            if (e.success) {
+                Ti.API.info(args.location);
+                Ti.API.info(JSON.stringify(e));
+                $.todoMap.region = {
+                    latitude: e.latitude,
+                    longitude: e.longitude,
+                    latitudeDelta: .1,
+                    longitudeDelta: .1
+                };
+                $.todoPosition.latitude = e.latitude;
+                $.todoPosition.longitude = e.longitude;
+                $.todoPosition.title = args.parent.titoloTxt.value || "todo";
+                $.todoMap.selectAnnotation($.todoPosition);
+            } else {
+                Ti.API.info("Error while using the geocoder");
+                Ti.API.info(JSON.stringify(e));
+            }
         });
     }
-    __defers["$.__views.__alloyId11!click!closeMapWin"] && $.__views.__alloyId11.addEventListener("click", closeMapWin);
+    __defers["$.__views.__alloyId13!click!closeMapWin"] && $.__views.__alloyId13.addEventListener("click", closeMapWin);
     _.extend($, exports);
 }
 

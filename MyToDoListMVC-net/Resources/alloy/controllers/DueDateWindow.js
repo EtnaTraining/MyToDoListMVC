@@ -1,9 +1,9 @@
 function Controller() {
     function closeWindow() {
-        $.DueDateWindow.close();
+        $.rootWin.close();
     }
     function dataSelezionata(e) {
-        parent.dateBtn.title = String.formatDate(e.value, "medium");
+        dateBtn.title = String.formatDate(e.value, "medium");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "DueDateWindow";
@@ -13,37 +13,32 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.DueDateWindow = Ti.UI.createWindow({
+    $.__views.rootWin = Ti.UI.createWindow({
+        id: "rootWin",
         modal: "true",
         backgroundColor: "white",
-        title: "Seleziona scadenza",
-        id: "DueDateWindow"
+        title: "Seleziona scadenza"
     });
-    $.__views.DueDateWindow && $.addTopLevelView($.__views.DueDateWindow);
-    $.__views.__alloyId1 = Ti.UI.createButton({
-        title: "Close",
-        id: "__alloyId1"
-    });
-    closeWindow ? $.__views.__alloyId1.addEventListener("click", closeWindow) : __defers["$.__views.__alloyId1!click!closeWindow"] = true;
-    $.__views.DueDateWindow.rightNavButton = $.__views.__alloyId1;
+    $.__views.rootWin && $.addTopLevelView($.__views.rootWin);
     $.__views.picker = Ti.UI.createPicker({
         id: "picker",
         type: Ti.UI.PICKER_TYPE_DATE,
         top: "30"
     });
-    $.__views.DueDateWindow.add($.__views.picker);
+    $.__views.rootWin.add($.__views.picker);
     dataSelezionata ? $.__views.picker.addEventListener("change", dataSelezionata) : __defers["$.__views.picker!change!dataSelezionata"] = true;
     $.__views.closeWindow = Ti.UI.createButton({
         bottom: "40dp",
         title: "Chiudi",
         id: "closeWindow"
     });
-    $.__views.DueDateWindow.add($.__views.closeWindow);
+    $.__views.rootWin.add($.__views.closeWindow);
     closeWindow ? $.__views.closeWindow.addEventListener("click", closeWindow) : __defers["$.__views.closeWindow!click!closeWindow"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var parent = arguments[0].parent;
-    __defers["$.__views.__alloyId1!click!closeWindow"] && $.__views.__alloyId1.addEventListener("click", closeWindow);
+    var dateBtn = arguments[0];
+    __defers["$.__views.__alloyId2!click!closeWindow"] && $.__views.__alloyId2.addEventListener("click", closeWindow);
+    __defers["$.__views.picker!change!dataSelezionata"] && $.__views.picker.addEventListener("change", dataSelezionata);
     __defers["$.__views.picker!change!dataSelezionata"] && $.__views.picker.addEventListener("change", dataSelezionata);
     __defers["$.__views.closeWindow!click!closeWindow"] && $.__views.closeWindow.addEventListener("click", closeWindow);
     _.extend($, exports);

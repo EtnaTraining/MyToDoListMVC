@@ -17,13 +17,16 @@ function saveToDo() {
 	if (newToDo.isValid()) {
 		
 		Ti.API.info(newToDo.toJSON());
-		if ($.iv.image != "/appicon.png") {
+		Ti.API.info("image path: " + $.iv.image );
+		if (typeof($.iv.image) != "string") {
 			var filename = $.titoloTxt.value.replace(/ /g, "_") + '_' + new Date().getTime() + ".jpg";
 			Ti.API.info(Ti.Filesystem.applicationDataDirectory + "/" + filename);
 			
 			var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
 			f.write($.iv.image.imageAsThumbnail(60, 0, 5));
 			newToDo.set('path', f.nativePath);
+		} else {
+			newToDo.set('path', $.iv.image);
 		}
 		
 		
@@ -53,7 +56,8 @@ function blurKeyboard() {
 }
 
 function openDueDateWindow() {
-	var dueDateController = Alloy.createController("DueDateWindow", {parent: $});
+	//var dueDateController = Alloy.createController("DueDateWindow", {parent: $});
+	var dueDateController = Alloy.createController("DueDateWindow", $.dateBtn);
 	//dueDateController.setParent($);
 	//dueDateController.setPickerDefaultDate($.dateBtn.title);
 	var dueDateWindow = dueDateController.getView();

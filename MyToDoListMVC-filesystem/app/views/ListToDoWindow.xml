@@ -2,7 +2,10 @@
         <Collection src="ToDo">
         <Window class="container" title="List of ToDos">
                 <TableView id="todoListTV" dataCollection="ToDo" editable="true" onClick="editToDo">
-                         <TableViewRow leftImage="{path}" title="{title}" hasChild="true" />
+                        <TableViewRow hasChild="true">
+                     		<ImageView image="{path}"/>
+                     		<Label text="{title}" />
+                     	</TableViewRow>
                 </TableView>
         </Window>
 </Alloy>

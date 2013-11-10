@@ -12,7 +12,7 @@ function Controller() {
         id: "ListToDoWindow"
     });
     $.__views.ListToDoWindow && $.addTopLevelView($.__views.ListToDoWindow);
-    $.__views.__alloyId3 = Ti.UI.createTableViewRow({
+    $.__views.__alloyId5 = Ti.UI.createTableViewRow({
         font: {
             fontSize: "14dp"
         },
@@ -21,12 +21,12 @@ function Controller() {
         leftImage: "/appicon.png",
         title: "Titolo",
         hasChild: "true",
-        id: "__alloyId3"
+        id: "__alloyId5"
     });
-    var __alloyId4 = [];
-    __alloyId4.push($.__views.__alloyId3);
+    var __alloyId6 = [];
+    __alloyId6.push($.__views.__alloyId5);
     $.__views.todoListTV = Ti.UI.createTableView({
-        data: __alloyId4,
+        data: __alloyId6,
         id: "todoListTV",
         editable: "true"
     });

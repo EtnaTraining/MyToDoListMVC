@@ -1,4 +1,20 @@
 function Controller() {
+    function __alloyId17() {
+        $.__views.Login.removeEventListener("open", __alloyId17);
+        if ($.__views.Login.activity) $.__views.Login.activity.onCreateOptionsMenu = function(e) {
+            var __alloyId16 = {
+                id: "cancel",
+                title: "Offline"
+            };
+            $.__views.cancel = e.menu.add(_.pick(__alloyId16, Alloy.Android.menuItemCreateArgs));
+            $.__views.cancel.applyProperties(_.omit(__alloyId16, Alloy.Android.menuItemCreateArgs));
+            cancelLogin ? $.__views.cancel.addEventListener("click", cancelLogin) : __defers["$.__views.cancel!click!cancelLogin"] = true;
+        }; else {
+            Ti.API.warn("You attempted to attach an Android Menu to a lightweight Window");
+            Ti.API.warn("or other UI component which does not have an Android activity.");
+            Ti.API.warn("Android Menus can only be opened on TabGroups and heavyweight Windows.");
+        }
+    }
     function userCreate() {
         acs.createUser($.username.value, $.password.value, function(e) {
             if (e.success) {
@@ -27,16 +43,12 @@ function Controller() {
     var $ = this;
     var exports = {};
     var __defers = {};
-    $.__views.logincontainer = Ti.UI.createWindow({
-        id: "logincontainer",
-        title: "Cloud Login"
+    $.__views.Login = Ti.UI.createWindow({
+        title: "Cloud Login",
+        id: "Login"
     });
-    $.__views.cancel = Ti.UI.createButton({
-        id: "cancel",
-        title: "Offline"
-    });
-    cancelLogin ? $.__views.cancel.addEventListener("click", cancelLogin) : __defers["$.__views.cancel!click!cancelLogin"] = true;
-    $.__views.logincontainer.leftNavButton = $.__views.cancel;
+    $.__views.Login && $.addTopLevelView($.__views.Login);
+    $.__views.Login.addEventListener("open", __alloyId17);
     $.__views.wrapper = Ti.UI.createView({
         backgroundColor: "#fff",
         borderRadius: 8,
@@ -46,7 +58,7 @@ function Controller() {
         layout: "vertical",
         id: "wrapper"
     });
-    $.__views.logincontainer.add($.__views.wrapper);
+    $.__views.Login.add($.__views.wrapper);
     $.__views.img = Ti.UI.createImageView({
         top: "10dp",
         width: "100dp",
@@ -100,14 +112,10 @@ function Controller() {
     });
     $.__views.wrapper.add($.__views.login);
     login ? $.__views.login.addEventListener("click", login) : __defers["$.__views.login!click!login"] = true;
-    $.__views.Login = Ti.UI.iOS.createNavigationWindow({
-        window: $.__views.logincontainer,
-        id: "Login"
-    });
-    $.__views.Login && $.addTopLevelView($.__views.Login);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var acs = require("acs");
+    __defers["$.__views.cancel!click!cancelLogin"] && $.__views.cancel.addEventListener("click", cancelLogin);
     __defers["$.__views.cancel!click!cancelLogin"] && $.__views.cancel.addEventListener("click", cancelLogin);
     __defers["$.__views.usercreate!click!userCreate"] && $.__views.usercreate.addEventListener("click", userCreate);
     __defers["$.__views.login!click!login"] && $.__views.login.addEventListener("click", login);

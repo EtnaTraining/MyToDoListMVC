@@ -1,18 +1,39 @@
 function Controller() {
-    function __alloyId11() {
-        __alloyId11.opts || {};
-        var models = __alloyId10.models;
+    function __alloyId9() {
+        $.__views.ListToDoWindow.removeEventListener("open", __alloyId9);
+        if ($.__views.ListToDoWindow.activity) $.__views.ListToDoWindow.activity.onCreateOptionsMenu = function(e) {
+            var __alloyId8 = {
+                id: "reload",
+                title: "Reload"
+            };
+            $.__views.reload = e.menu.add(_.pick(__alloyId8, Alloy.Android.menuItemCreateArgs));
+            $.__views.reload.applyProperties(_.omit(__alloyId8, Alloy.Android.menuItemCreateArgs));
+            reload ? $.__views.reload.addEventListener("click", reload) : __defers["$.__views.reload!click!reload"] = true;
+        }; else {
+            Ti.API.warn("You attempted to attach an Android Menu to a lightweight Window");
+            Ti.API.warn("or other UI component which does not have an Android activity.");
+            Ti.API.warn("Android Menus can only be opened on TabGroups and heavyweight Windows.");
+        }
+    }
+    function __alloyId14() {
+        __alloyId14.opts || {};
+        var models = __alloyId13.models;
         var len = models.length;
         var rows = [];
         for (var i = 0; len > i; i++) {
-            var __alloyId8 = models[i];
-            __alloyId8.__transform = defaultThumb(__alloyId8);
-            var __alloyId9 = Ti.UI.createTableViewRow({
-                leftImage: "undefined" != typeof __alloyId8.__transform["path"] ? __alloyId8.__transform["path"] : __alloyId8.get("path"),
-                title: "undefined" != typeof __alloyId8.__transform["title"] ? __alloyId8.__transform["title"] : __alloyId8.get("title"),
+            var __alloyId11 = models[i];
+            __alloyId11.__transform = defaultThumb(__alloyId11);
+            var __alloyId12 = Ti.UI.createTableViewRow({
+                font: {
+                    fontSize: "16dp"
+                },
+                color: "black",
+                height: "60dp",
+                leftImage: "undefined" != typeof __alloyId11.__transform["path"] ? __alloyId11.__transform["path"] : __alloyId11.get("path"),
+                title: "undefined" != typeof __alloyId11.__transform["title"] ? __alloyId11.__transform["title"] : __alloyId11.get("title"),
                 hasChild: "true"
             });
-            rows.push(__alloyId9);
+            rows.push(__alloyId12);
         }
         $.__views.todoListTV.setData(rows);
     }
@@ -53,27 +74,28 @@ function Controller() {
     });
     $.__views.ListToDoWindow && $.addTopLevelView($.__views.ListToDoWindow);
     $.__views.reload = Ti.UI.createButton({
-        systemButton: Ti.UI.iPhone.SystemButton.REFRESH,
         id: "reload"
     });
     reload ? $.__views.reload.addEventListener("click", reload) : __defers["$.__views.reload!click!reload"] = true;
     $.__views.ListToDoWindow.rightNavButton = $.__views.reload;
+    $.__views.ListToDoWindow.addEventListener("open", __alloyId9);
     $.__views.todoListTV = Ti.UI.createTableView({
         id: "todoListTV",
         editable: "true"
     });
     $.__views.ListToDoWindow.add($.__views.todoListTV);
-    var __alloyId10 = Alloy.Collections["ToDo"] || ToDo;
-    __alloyId10.on("fetch destroy change add remove reset", __alloyId11);
+    var __alloyId13 = Alloy.Collections["ToDo"] || ToDo;
+    __alloyId13.on("fetch destroy change add remove reset", __alloyId14);
     editToDo ? $.__views.todoListTV.addEventListener("click", editToDo) : __defers["$.__views.todoListTV!click!editToDo"] = true;
     exports.destroy = function() {
-        __alloyId10.off("fetch destroy change add remove reset", __alloyId11);
+        __alloyId13.off("fetch destroy change add remove reset", __alloyId14);
     };
     _.extend($, $.__views);
     var todolist = Alloy.Collections.ToDo;
     var acs = require("acs");
     Ti.API.info(todolist.toJSON());
     var todo = Alloy.Models.ToDo;
+    __defers["$.__views.reload!click!reload"] && $.__views.reload.addEventListener("click", reload);
     __defers["$.__views.reload!click!reload"] && $.__views.reload.addEventListener("click", reload);
     __defers["$.__views.todoListTV!click!editToDo"] && $.__views.todoListTV.addEventListener("click", editToDo);
     _.extend($, exports);

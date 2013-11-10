@@ -10,7 +10,7 @@ function saveToDo() {
 	if (!( typeof ($.iv.image) == "string")) {
 		var filename = Ti.Filesystem.applicationDataDirectory + $.titoloTxt.value.replace(/ /g, "_") + "_" + new Date().getTime() + ".jpg";
 		var f = Ti.Filesystem.getFile(filename);
-		f.write($.iv.image.imageAsThumbnail(100, 0, 3));
+		f.write($.iv.image.imageAsThumbnail(60, 0, 3));
 	} else {
 		var filename = $.iv.image;
 	};
@@ -68,7 +68,17 @@ function openDueDateWindow() {
 
 function geolocateToDo() {
 	var mapWin = Alloy.createController("MapWindow", {location: $.locationTxt.value, parent: $});
-	mapWin.getView().open({modal:true});
+	if (OS_IOS) {
+		var navWin = Ti.UI.iOS.createNavigationWindow({
+			modal: true,
+			window: mapWin.getView()
+		});
+		mapWin.navWin = navWin;
+		navWin.open();
+	} else {
+		mapWin.getView().open({modal:true});
+	}
+	
 }
 
 

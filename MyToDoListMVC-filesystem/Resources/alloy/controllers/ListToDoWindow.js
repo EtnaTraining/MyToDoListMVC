@@ -1,23 +1,33 @@
 function Controller() {
-    function __alloyId12() {
-        __alloyId12.opts || {};
-        var models = __alloyId11.models;
+    function __alloyId14() {
+        __alloyId14.opts || {};
+        var models = __alloyId13.models;
         var len = models.length;
         var rows = [];
         for (var i = 0; len > i; i++) {
-            var __alloyId9 = models[i];
-            __alloyId9.__transform = {};
-            var __alloyId10 = Ti.UI.createTableViewRow({
-                font: {
-                    fontSize: "14dp"
-                },
-                color: "black",
-                height: "40dp",
-                leftImage: "undefined" != typeof __alloyId9.__transform["path"] ? __alloyId9.__transform["path"] : __alloyId9.get("path"),
-                title: "undefined" != typeof __alloyId9.__transform["title"] ? __alloyId9.__transform["title"] : __alloyId9.get("title"),
+            var __alloyId7 = models[i];
+            __alloyId7.__transform = {};
+            var __alloyId8 = Ti.UI.createTableViewRow({
+                height: "70dp",
                 hasChild: "true"
             });
-            rows.push(__alloyId10);
+            rows.push(__alloyId8);
+            var __alloyId10 = Ti.UI.createImageView({
+                left: "5dp",
+                width: "60dp",
+                height: "60dp",
+                image: "undefined" != typeof __alloyId7.__transform["path"] ? __alloyId7.__transform["path"] : __alloyId7.get("path")
+            });
+            __alloyId8.add(__alloyId10);
+            var __alloyId12 = Ti.UI.createLabel({
+                left: "80dp",
+                font: {
+                    fontSize: "18dp"
+                },
+                color: "black",
+                text: "undefined" != typeof __alloyId7.__transform["title"] ? __alloyId7.__transform["title"] : __alloyId7.get("title")
+            });
+            __alloyId8.add(__alloyId12);
         }
         $.__views.todoListTV.setData(rows);
     }
@@ -53,11 +63,11 @@ function Controller() {
         editable: "true"
     });
     $.__views.ListToDoWindow.add($.__views.todoListTV);
-    var __alloyId11 = Alloy.Collections["ToDo"] || ToDo;
-    __alloyId11.on("fetch destroy change add remove reset", __alloyId12);
+    var __alloyId13 = Alloy.Collections["ToDo"] || ToDo;
+    __alloyId13.on("fetch destroy change add remove reset", __alloyId14);
     editToDo ? $.__views.todoListTV.addEventListener("click", editToDo) : __defers["$.__views.todoListTV!click!editToDo"] = true;
     exports.destroy = function() {
-        __alloyId11.off("fetch destroy change add remove reset", __alloyId12);
+        __alloyId13.off("fetch destroy change add remove reset", __alloyId14);
     };
     _.extend($, $.__views);
     var todolist = Alloy.Collections.ToDo;

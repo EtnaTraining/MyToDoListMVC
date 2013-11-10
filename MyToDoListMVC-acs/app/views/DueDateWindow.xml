@@ -1,11 +1,19 @@
 <Alloy>
-	<NavigationWindow>
+
+    <!-- iOS -->
+    <NavigationWindow id="rootWin" platform="ios">
         <Window modal="true" backgroundColor="white" title="Seleziona scadenza">
-                <RightNavButton>
-                        <Button onClick="closeWindow">Close</Button>
-                </RightNavButton>
-                <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata"/>
-                <Button id="closeWindow" platform="android" onClick="closeWindow">Chiudi</Button>
+            <RightNavButton>
+                <Button onClick="closeWindow">Close</Button>
+            </RightNavButton>
+            <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata" />
         </Window>
     </NavigationWindow>
+
+    <!-- Android -->
+    <Window id="rootWin" modal="true" backgroundColor="white" title="Seleziona scadenza">
+
+        <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata" />
+        <Button id="closeWindow" platform="android" onClick="closeWindow">Chiudi</Button>
+    </Window>
 </Alloy>

@@ -1,10 +1,18 @@
 ".container": {
 	backgroundColor: "white"
 },
-"TableViewRow[platform=android]": {
+"TableViewRow": {
+	height: "70dp"
+},
+"ImageView": {
+	left: "5dp",
+	width: "60dp",
+	height: "60dp"
+},
+"Label": {
+	left: "80dp",
 	font: {
-		fontSize: "14dp"
+		fontSize: "18dp"
 	},
-	color: "black",
-	height: "40dp"
+	color: "black"
 }

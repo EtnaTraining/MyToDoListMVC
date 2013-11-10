@@ -1,12 +1,13 @@
 
-var parent = arguments[0].parent;
+//var parent = arguments[0].parent;
+var dateBtn = arguments[0];
 
 function closeWindow() {
-	$.DueDateWindow.close();
+	$.rootWin.close();
 }
 
 function dataSelezionata(e) {
-	parent.dateBtn.title = String.formatDate(e.value, "medium");
+	dateBtn.title = String.formatDate(e.value, "medium");
 }
 
 /* 

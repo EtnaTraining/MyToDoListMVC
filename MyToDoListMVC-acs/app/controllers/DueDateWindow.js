@@ -17,7 +17,7 @@ exports.setPickerDefaultDate = function(date) {
 } */
 
 function closeWindow() {
-	$.DueDateWindow.close();
+	$.rootWin.close();
 }
 
 function dataSelezionata(e) {

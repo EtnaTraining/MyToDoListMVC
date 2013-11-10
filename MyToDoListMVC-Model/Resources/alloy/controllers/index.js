@@ -9,30 +9,30 @@ function Controller() {
     $.__views.tg = Ti.UI.createTabGroup({
         id: "tg"
     });
-    $.__views.__alloyId23 = Alloy.createController("NewToDoWindow", {
-        id: "__alloyId23"
+    $.__views.__alloyId25 = Alloy.createController("NewToDoWindow", {
+        id: "__alloyId25"
     });
-    $.__views.__alloyId22 = Ti.UI.createTab({
-        window: $.__views.__alloyId23.getViewEx({
+    $.__views.__alloyId24 = Ti.UI.createTab({
+        window: $.__views.__alloyId25.getViewEx({
             recurse: true
         }),
         title: "Nuova ToDo",
         icon: "KS_nav_ui.png",
-        id: "__alloyId22"
+        id: "__alloyId24"
     });
-    $.__views.tg.addTab($.__views.__alloyId22);
-    $.__views.__alloyId27 = Alloy.createController("ListTodoWindow", {
-        id: "__alloyId27"
+    $.__views.tg.addTab($.__views.__alloyId24);
+    $.__views.__alloyId29 = Alloy.createController("ListToDoWindow", {
+        id: "__alloyId29"
     });
-    $.__views.__alloyId26 = Ti.UI.createTab({
-        window: $.__views.__alloyId27.getViewEx({
+    $.__views.__alloyId28 = Ti.UI.createTab({
+        window: $.__views.__alloyId29.getViewEx({
             recurse: true
         }),
         title: "Lista ToDo",
         icon: "KS_nav_views.png",
-        id: "__alloyId26"
+        id: "__alloyId28"
     });
-    $.__views.tg.addTab($.__views.__alloyId26);
+    $.__views.tg.addTab($.__views.__alloyId28);
     $.__views.tg && $.addTopLevelView($.__views.tg);
     exports.destroy = function() {};
     _.extend($, $.__views);

@@ -54,7 +54,7 @@ exports.saveToDo = function(todo) {
         fields: todo
     };
     Cloud.Objects.create(data, function(e) {
-        Ti.API.info("Fugitive saved to cloud: " + e.success ? "Success" : "Oopsie" + JSON.stringify(e));
+        Ti.API.info("Todo saved to cloud: " + e.success ? "Success" : "Oopsie" + JSON.stringify(e));
     });
 };
 

@@ -2,7 +2,7 @@
 	
 	<!-- iOS -->
 	
-	<NavigationWindow platform="ios">
+	<NavigationWindow id="rootWin" platform="ios">
         <Window modal="true" backgroundColor="white" title="Seleziona scadenza">
                 <RightNavButton platform="ios">
                         <Button onClick="closeWindow">Close</Button>
@@ -13,7 +13,7 @@
      
      <!-- Android -->
      
-     <Window platform="android" modal="true" backgroundColor="white" title="Seleziona scadenza">
+     <Window id="rootWin" platform="android" modal="true" backgroundColor="white" title="Seleziona scadenza">
                 <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata"/>
                 <Button id="closeWindow"  onClick="closeWindow">Chiudi</Button>
      </Window>

@@ -9,7 +9,8 @@ function blurKeyboard() {
 }
 
 function openDueDateWindow() {
-	var dueDateController = Alloy.createController("DueDateWindow", {parent: $});
+	//var dueDateController = Alloy.createController("DueDateWindow", {parent: $});
+	var dueDateController = Alloy.createController("DueDateWindow", $.dateBtn);
 	//dueDateController.setParent($);
 	//dueDateController.setPickerDefaultDate($.dateBtn.title);
 	var dueDateWindow = dueDateController.getView();
