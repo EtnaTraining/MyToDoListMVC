@@ -4,7 +4,11 @@
 "Picker": {
 	top: "30dp"
 },
+"Picker[platform=android]": {
+	backgroundColor: "black"
+}
 "#closeWindow": {
-	bottom: "40dp"
+	bottom: "40dp",
+	color: "black"
 }
 
