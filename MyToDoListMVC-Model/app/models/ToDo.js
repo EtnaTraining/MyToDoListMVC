@@ -9,7 +9,7 @@ exports.definition = {
                 },
                 adapter: {
                         type: "sql",
-                        collection_name: "ToDo"
+                        collection_name: "todo"
                 }
         },              
         extendModel: function(Model) {          

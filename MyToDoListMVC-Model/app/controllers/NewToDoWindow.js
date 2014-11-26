@@ -1,5 +1,5 @@
 
-var todo = Alloy.Models.ToDo;
+var todo = Alloy.Models.todo;
 $.alarmSw.value = false;
 $.dateBtn.title = "oggi";
 
@@ -15,7 +15,7 @@ function saveToDo() {
 	//Ti.API.info(newToDo.toJSON());
 	if (newToDo.isValid()) {
 		newToDo.save();
-		Alloy.Collections.ToDo.add(newToDo);
+		Alloy.Collections.todo.add(newToDo);
 		Alloy.Globals.tabgroup.setActiveTab(1);
 		// reset the form
 		$.titoloTxt.value = "";
