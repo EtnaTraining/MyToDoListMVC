@@ -12,16 +12,21 @@ function editToDo(e) {
 		location: selToDo.location,
 		alarm: selToDo.alarm,
 		duedate: selToDo.duedate,
-		image: Ti.Filesystem.applicationDataDirectory + selToDo.image
+		image: selToDo.image.indexOf("/appicon.png") == -1 ? Ti.Filesystem.applicationDataDirectory + selToDo.image : selToDo.image
 	});
 	Ti.API.info(todo.attributes);
 	Alloy.Globals.tabgroup.setActiveTab(0);
 }
 
 function addImagePath(model) {
-	Ti.API.info("adding path");
+	
 	var todo = model.toJSON();
-	todo.image = Ti.Filesystem.applicationDataDirectory + todo.image;
-	//Ti.API.info(model.attributes);
+	Ti.API.info(model.attributes);
+	Ti.API.info(todo.image.indexOf("/appicon.png"));
+	if (todo.image.indexOf("/appicon.png") == -1) {
+		Ti.API.info("adding path to " + model.attributes.title);
+		todo.image = Ti.Filesystem.applicationDataDirectory + todo.image;
+	}
+	
 	return todo;
 }
