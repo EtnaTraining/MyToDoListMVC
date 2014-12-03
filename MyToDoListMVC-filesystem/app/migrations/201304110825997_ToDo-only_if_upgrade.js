@@ -1,5 +1,5 @@
 migration.up = function(migrator) {
-	migrator.db.execute('ALTER TABLE ' + migrator.table + ' ADD COLUMN path TEXT;');
+	migrator.db.execute('ALTER TABLE ' + migrator.table + ' ADD COLUMN image TEXT;');
 };
 
 migration.down = function(migrator) {

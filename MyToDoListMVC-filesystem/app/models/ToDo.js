@@ -5,11 +5,11 @@ exports.definition = {
                     "location": "string",
                     "alarm": "boolean",
                     "duedate": "date",
-                    "path": "string"
+                    "image": "string"
                 },
                 adapter: {
                         type: "sql",
-                        collection_name: "ToDo"
+                        collection_name: "todo"
                 }
         },              
         extendModel: function(Model) {          

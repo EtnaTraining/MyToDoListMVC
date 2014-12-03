@@ -1,9 +1,9 @@
 <Alloy>
-        <Collection src="ToDo">
+        <Collection src="todo"/>
         <Window class="container" title="List of ToDos">
-                <TableView id="todoListTV" dataCollection="ToDo" editable="true" onClick="editToDo">
+                <TableView id="todoListTV" dataCollection="todo" dataTransform="addImagePath" editable="true" onClick="editToDo">
                         <TableViewRow hasChild="true">
-                     		<ImageView image="{path}"/>
+                     		<ImageView image="{image}"/>
                      		<Label text="{title}" />
                      	</TableViewRow>
                 </TableView>
