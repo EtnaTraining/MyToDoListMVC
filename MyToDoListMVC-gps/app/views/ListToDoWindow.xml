@@ -1,8 +1,8 @@
 <Alloy>
-        <Collection src="ToDo">
+        <Collection src="todo"/>
         <Window class="container" title="List of ToDos">
-                <TableView id="todoListTV" dataCollection="ToDo" dataTransform="defaultThumb" editable="true" onClick="editToDo">
-                         <TableViewRow leftImage="{path}" title="{title}" hasChild="true" />
+                <TableView id="todoListTV" dataCollection="todo" dataTransform="defaultThumb" editable="true" onClick="editToDo">
+                         <TableViewRow leftImage="{image}" title="{title}" hasChild="true" />
                 </TableView>
         </Window>
 </Alloy>

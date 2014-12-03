@@ -3,7 +3,7 @@
 		<RightNavButton platform="ios">
 			<Button onClick="closeMapWin">Chiudi</Button>
 		</RightNavButton>
-		<View ns="Ti.Map" id="todoMap">
+		<View ns="Alloy.Globals.Map" id="todoMap">
 			<Annotation id="todoPosition" />
 		</View>
 	</Window>

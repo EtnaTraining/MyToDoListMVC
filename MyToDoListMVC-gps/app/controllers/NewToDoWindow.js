@@ -1,4 +1,4 @@
-var todo = Alloy.Models.ToDo;
+var todo = Alloy.Models.todo;
 $.alarmSw.value = false;
 $.dateBtn.title = "oggi";
 $.iv.image = "/appicon.png";
@@ -8,24 +8,24 @@ var net = require('net');
 function saveToDo() {
 
 	if (!( typeof ($.iv.image) == "string")) {
-		var filename = Ti.Filesystem.applicationDataDirectory + $.titoloTxt.value.replace(/ /g, "_") + "_" + new Date().getTime() + ".jpg";
-		var f = Ti.Filesystem.getFile(filename);
+		var filename = $.titoloTxt.value.replace(/ /g, "_") + "_" + new Date().getTime() + ".jpg";
+		var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
 		f.write($.iv.image.imageAsThumbnail(60, 0, 3));
 	} else {
 		var filename = $.iv.image;
 	};
-	var newToDo = Alloy.createModel("ToDo", {
+	var newToDo = Alloy.createModel("todo", {
 		title : $.titoloTxt.value,
 		location : $.locationTxt.value,
 		alarm : $.alarmSw.value,
 		duedate : $.dateBtn.title,
-		path: filename
+		image: filename
 	});
 	//Ti.API.info(newToDo.toJSON());
 	if (newToDo.isValid()) {
 		newToDo.save();
 		//net.saveToDo(newToDo.attributes);
-		Alloy.Collections.ToDo.add(newToDo);
+		Alloy.Collections.todo.add(newToDo);
 		Alloy.Globals.tabgroup.setActiveTab(1);
 		// reset the form
         $.titoloTxt.value = "";
