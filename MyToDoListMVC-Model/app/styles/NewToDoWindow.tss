@@ -20,7 +20,8 @@
 	width: "65%",
 	right: "5%",
 //borderWidth: 1,
-	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	color: "black"
 },
 
 "#dateBtn" : {
@@ -33,6 +34,12 @@
 	height: "50dp",
 	right: "5%"
 },
+"#dateBtn[platform=android]": {
+	color: "black"
+},
+"#saveToDo[platform=android]": {
+	color: "black"
+}
 "#alarmSw" : {
 	left: "30%"
 },

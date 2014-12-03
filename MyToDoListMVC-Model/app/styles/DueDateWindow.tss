@@ -3,4 +3,10 @@
 },
 "#closeWindow": {
 	bottom: "40dp"
-}
+},
+"#picker[platform=android]": {
+	backgroundColor: "black"
+},
+"#closeWindow[platform=android]": {
+	color: "black"
+} 

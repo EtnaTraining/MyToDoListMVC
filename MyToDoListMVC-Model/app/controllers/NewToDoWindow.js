@@ -6,7 +6,7 @@ $.dateBtn.title = "oggi";
 //var net = require('net');
 
 function saveToDo() {
-	var newToDo = Alloy.createModel("ToDo", {
+	var newToDo = Alloy.createModel("todo", {
 		title: $.titoloTxt.value,
 		location: $.locationTxt.value,
 		alarm: $.alarmSw.value,
