@@ -1,4 +1,4 @@
-var todolist = Alloy.Collections.ToDo;
+var todolist = Alloy.Collections.todo;
 
 
 if (Ti.Network.online) {
@@ -17,7 +17,7 @@ if (Ti.Network.online) {
 
 
 
-var todo = Alloy.Models.ToDo;
+var todo = Alloy.Models.todo;
 
 function editToDo(e) {
     var selToDo = todolist.at(e.index).attributes;

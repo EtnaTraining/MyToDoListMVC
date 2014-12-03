@@ -1,7 +1,7 @@
 <Alloy>
-        <Collection src="ToDo">
+        <Collection src="todo"/>
         <Window class="container" title="List of ToDos">
-                <TableView id="todoListTV" dataCollection="ToDo" editable="true" onClick="editToDo">
+                <TableView id="todoListTV" dataCollection="todo" editable="true" onClick="editToDo">
                          <TableViewRow leftImage="/appicon.png" title="{title}" hasChild="true" />
                 </TableView>
         </Window>

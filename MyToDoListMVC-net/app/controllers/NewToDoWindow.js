@@ -1,12 +1,12 @@
 
-var todo = Alloy.Models.ToDo;
+var todo = Alloy.Models.todo;
 $.alarmSw.value = false;
 $.dateBtn.title = "oggi";
 
 var net = require('net');
 
 function saveToDo() {
-	var newToDo = Alloy.createModel("ToDo", {
+	var newToDo = Alloy.createModel("todo", {
 		title: $.titoloTxt.value,
 		location: $.locationTxt.value,
 		alarm: $.alarmSw.value,
@@ -18,7 +18,7 @@ function saveToDo() {
 		if (Ti.Network.online) {
 			net.saveToDo(newToDo.attributes);
 		}
-		Alloy.Collections.ToDo.add(newToDo);
+		Alloy.Collections.todo.add(newToDo);
 		Alloy.Globals.tabgroup.setActiveTab(1);
 		// reset the form
         $.titoloTxt.value = "";
