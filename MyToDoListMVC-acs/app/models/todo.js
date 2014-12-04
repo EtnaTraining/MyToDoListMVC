@@ -5,7 +5,7 @@ exports.definition = {
                     "location": "string",
                     "alarm": "boolean",
                     "duedate": "date",
-                    "path": "string"
+                    "image": "string"
                 },
                 adapter: {
                         type: "sql",

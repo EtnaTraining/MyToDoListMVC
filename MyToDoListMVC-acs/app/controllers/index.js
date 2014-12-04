@@ -14,7 +14,7 @@ if (Ti.Network.online) {
 	}
 	
 } else {
-	Alloy.Collections.ToDo.fetch();
+	Alloy.Collections.todo.fetch();
 }
 
 

@@ -3,7 +3,7 @@ var acs = require('acs');
 function userCreate() {
     acs.createUser($.username.value, $.password.value, function(e) {
         if (e.success) {
-            Alloy.Collections.ToDo.reset([]);
+            Alloy.Collections.todo.reset([]);
             if (OS_IOS) {
                 $.navWin.close();
             } else {
@@ -22,7 +22,7 @@ function login() {
 
             acs.getToDos(function(todolist) {
                 //Ti.API.info(todolist);	
-                Alloy.Collections.ToDo.reset(todolist);
+                Alloy.Collections.todo.reset(todolist);
                 if (OS_IOS) {
                     $.navWin.close();
                 } else {
@@ -37,7 +37,7 @@ function login() {
 }
 
 function cancelLogin() {
-    Alloy.Collections.ToDo.fetch();
+    Alloy.Collections.todo.fetch();
     if (OS_IOS) {
         $.navWin.close();
     } else {

@@ -17,6 +17,8 @@ exports.setPickerDefaultDate = function(date) {
 } */
 
 function closeWindow() {
+	Ti.API.info("chiudo");
+	Ti.API.info($.rootWin);
 	$.rootWin.close();
 }
 
