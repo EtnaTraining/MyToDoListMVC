@@ -6,7 +6,8 @@ Ti.API.info(JSON.stringify("Geo enabled: " + Ti.Geolocation.locationServicesEnab
 if (Ti.Geolocation.locationServicesEnabled && args.location == "") {
     Ti.API.info("geolocalizziamoci")
     Ti.Geolocation.getCurrentPosition(function(e) {
-        if (e.success) {
+        if (!e.error) {
+            Ti.API.info("posizione trovata");
             Ti.API.info(JSON.stringify(e));
             $.todoMap.region = {
                 latitude: e.coords.latitude,
@@ -15,6 +16,7 @@ if (Ti.Geolocation.locationServicesEnabled && args.location == "") {
                 longitudeDelta: 0.01
             };
             //win.fireEvent('locationFound', e.coords)
+
             $.todoPosition.latitude = e.coords.latitude;
             $.todoPosition.longitude = e.coords.longitude;
             $.todoPosition.pinImage = "pin.png";
@@ -25,7 +27,7 @@ if (Ti.Geolocation.locationServicesEnabled && args.location == "") {
                 args.parent.locationTxt.value = e.places[0].address;
             });
         } else {
-        	Ti.API.info("Error while getting the currentPosition");
+        	alert("Error while getting the currentPosition");
         	Ti.API.info(JSON.stringify(e));
         }
 
