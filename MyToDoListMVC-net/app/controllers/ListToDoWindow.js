@@ -5,7 +5,7 @@ if (Ti.Network.online) {
     var net = require('net');
     net.getToDos(function(todos) {
         for (var i = 0; i < todos.length; i++) {
-            var todo = Alloy.createModel("ToDo", todos[i]);
+            var todo = Alloy.createModel("todo", todos[i]);
             todolist.add(todo);
         }
         Ti.API.info(JSON.stringify(todolist));
