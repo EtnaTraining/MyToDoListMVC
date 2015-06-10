@@ -11,7 +11,7 @@
     </NavigationWindow>
 
     <!-- Android -->
-    <Window id="rootWin" modal="true" backgroundColor="white" title="Seleziona scadenza">
+    <Window id="rootWin" modal="true" backgroundColor="white" title="Seleziona scadenza" platform="android">
 
         <Picker id="picker" type="Ti.UI.PICKER_TYPE_DATE" top="30" onChange="dataSelezionata" />
         <Button id="closeWindow" platform="android" onClick="closeWindow">Chiudi</Button>
