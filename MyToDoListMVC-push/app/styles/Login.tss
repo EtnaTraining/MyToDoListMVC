@@ -21,9 +21,10 @@
         backgroundColor: "#fff",
         left: "10dp", right: "10dp",
         height: '40dp',
-        //borderColor: '#888',
+        borderColor: '#888',
         top: "10dp",
-        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        color: "black"
 },
 "#username": {
         top: "10dp",

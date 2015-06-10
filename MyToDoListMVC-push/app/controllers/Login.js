@@ -4,7 +4,7 @@ function userCreate() {
 	acs.createUser($.username.value, $.password.value, function(e) {
 		if (e.success) {
 			acs.subscribeForPush();
-			Alloy.Collections.ToDo.reset([]);
+			Alloy.Collections.todo.reset([]);
 			$.rootWin.close();
 			//Alloy.Globals.tabgroup.open();
 		} else {
@@ -19,7 +19,7 @@ function login() {
 			acs.subscribeForPush();
 			acs.getToDos(function (todolist) {
 				//Ti.API.info(todolist);	
-				Alloy.Collections.ToDo.reset(todolist);
+				Alloy.Collections.todo.reset(todolist);
 				$.rootWin.close();
 			});
 			

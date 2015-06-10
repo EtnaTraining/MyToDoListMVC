@@ -1,9 +1,9 @@
-var todolist = Alloy.Collections.ToDo;
+var todolist = Alloy.Collections.todo;
 var acs = require('acs');
 //todolist.fetch();
-Ti.API.info(todolist.toJSON());
+//Ti.API.info(todolist.toJSON());
 
-var todo = Alloy.Models.ToDo;
+var todo = Alloy.Models.todo;
 
 function editToDo(e) {
 	var selToDo = todolist.at(e.index).attributes;
@@ -29,7 +29,7 @@ function reload() {
 	if (Ti.Network.online) {
 		acs.getToDos(function(todolist) {
 			//Ti.API.info(todolist);
-			Alloy.Collections.ToDo.reset(todolist);
+			Alloy.Collections.todo.reset(todolist);
 		});
 	}
 

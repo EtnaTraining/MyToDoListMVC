@@ -7,7 +7,7 @@ var loggedIn = false;
 
 
 
-Ti.UI.createWindow(parameters)
+
 
 var Cloud = require('ti.cloud');
 if (OS_ANDROID) {
@@ -164,14 +164,14 @@ exports.registerAlarm = function(todo) {
 	xhr.onerror = function(e) {
 		alert("Error: " + JSON.stringify(e));
 	};
-	xhr.open("POST", "https://1dfaae1a42a3c3061fcd4f8c50cc535c02e812ab.cloudapp.appcelerator.com/register");
+	xhr.open("POST", "https://7faa5b494f1aa0223a460f1425207ab1fa5b82b3.cloudapp-enterprise.appcelerator.com/register");
 	//10.58.186.47
 	//xhr.open("POST", "http://10.58.186.47:8080/register");
 	todo.id = currentUser.id;
 	Ti.API.info(JSON.stringify(todo));
 	todo.duedate = todo.duedate.toISOString();
 	xhr.send(todo);
-}
+};
 /*
 
  // Add your code to export the login() method here

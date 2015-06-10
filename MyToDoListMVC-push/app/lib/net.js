@@ -18,7 +18,7 @@ exports.getToDos = function(_callback) {
 	}
 	xhr.open("GET", "http://todolist2.nodester.com/" + uuid);
 	xhr.send();
-}
+};
 
 exports.saveToDo = function(todo) {
 	var xhr = Ti.Network.createHTTPClient();
@@ -30,7 +30,7 @@ exports.saveToDo = function(todo) {
 	};
 	xhr.open("POST", "http://todolist2.nodester.com/" + uuid);
 	xhr.send(todo);
-}
+};
 
 
 
@@ -76,4 +76,4 @@ exports.enablePushNotifications = function(_callback) {
 	}
 	
 	//Ti.Network.unregisterForPushNotifications();
-}
+};
