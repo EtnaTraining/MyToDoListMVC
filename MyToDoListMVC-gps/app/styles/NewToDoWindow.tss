@@ -21,7 +21,8 @@
 	right: "5%",
 //borderWidth: 1,
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ONFOCUS
+	clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ONFOCUS,
+	color: "black"
 },
 "#locationTxt": {
 	width: "55%",

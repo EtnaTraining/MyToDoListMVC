@@ -67,18 +67,34 @@ function openDueDateWindow() {
 }
 
 function geolocateToDo() {
-	var mapWin = Alloy.createController("MapWindow", {location: $.locationTxt.value, parent: $});
-	if (OS_IOS) {
-		var navWin = Ti.UI.iOS.createNavigationWindow({
-			modal: true,
-			window: mapWin.getView()
-		});
-		mapWin.navWin = navWin;
-		navWin.open();
-	} else {
-		mapWin.getView().open({modal:true});
-	}
-	
-}
+	var permissions = require("permissions");
 
 
+	permissions.requestLocationPermissions(Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE, function(e) {
+
+		if (!e.success) {
+
+			// In some cases the library will already have displayed a dialog, in other cases we receive a message to alert
+			if (e.error) {
+				alert("non ha dato i permessi");
+			}
+			closeMapWin();
+			return;
+		}
+		var mapWin = Alloy.createController("MapWindow",
+		{location: $.locationTxt.value, title: $.titoloTxt.value, setLocation: function(location) {
+			$.locationTxt.value = location;
+		}});
+		if (OS_IOS) {
+			var navWin = Ti.UI.iOS.createNavigationWindow({
+				modal: true,
+				window: mapWin.getView()
+			});
+			mapWin.navWin = navWin;
+			navWin.open();
+		} else {
+			mapWin.getView().open({modal:true});
+		}
+
+	});
+};

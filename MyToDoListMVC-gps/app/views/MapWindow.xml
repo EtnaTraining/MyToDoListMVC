@@ -4,7 +4,7 @@
 			<Button onClick="closeMapWin">Chiudi</Button>
 		</RightNavButton>
 		<Module module="ti.map" id="todoMap">
-			<Annotation id="todoPosition"/>
+			<Annotation  id="todoPosition"/>
 		</Module>
 	</Window>
 </Alloy>
